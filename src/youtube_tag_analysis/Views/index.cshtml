@@ -1,0 +1,43 @@
+﻿@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en" ng-app="YTT">
+<head>
+    <base href="/">
+    <meta charset="utf-8" />
+    <title>My ASP.NET Application</title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
+</head>
+<body ng-controller="HomeCtrl as vm">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+
+        </div>
+    </nav>
+    <div class="page-header text-center">
+        <h1>YouTube Tag Analysis</h1>
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Navigation
+            </div>
+            <ul class="list-group">
+                <a href="/" class="list-group-item">Home</a>
+                <a href="/distribution" class="list-group-item">Distribution</a>
+                <a href="#" class="list-group-item">Overlap</a>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div ng-view></div>
+    </div>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load('visualization', '1.1', { packages: ['corechart'] });
+    </script>
+</body>
+</html>

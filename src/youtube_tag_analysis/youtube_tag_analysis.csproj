@@ -1,0 +1,843 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B5056F84-B5BB-4390-8B5A-FFED4278A1DD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>youtube_tag_analysis</RootNamespace>
+    <AssemblyName>youtube_tag_analysis</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <Private>True</Private>
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.0.0\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\graph.cs" />
+    <Compile Include="Controllers\API\GeneralController.cs" />
+    <Compile Include="Controllers\API\StatisticsController.cs" />
+    <Compile Include="Controllers\View\DistributionController.cs" />
+    <Compile Include="Controllers\View\EntryController.cs" />
+    <Compile Include="Controllers\View\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BarChartModel.cs" />
+    <Compile Include="Models\StatisticsModel.cs" />
+    <Compile Include="Models\TagsPerVideoModel.cs" />
+    <Compile Include="Models\VideoModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GeneralService.cs" />
+    <Compile Include="Services\ImportService.cs" />
+    <Compile Include="Services\StatisticsService.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Small dataset\documents\-8Fmyyd2Ffo.txt" />
+    <Content Include="App_Data\Small dataset\documents\-f9vvBU50D0.txt" />
+    <Content Include="App_Data\Small dataset\documents\-kz1OQPjRhA.txt" />
+    <Content Include="App_Data\Small dataset\documents\-MU0_MAi3to.txt" />
+    <Content Include="App_Data\Small dataset\documents\-ZtCzzaRj1U.txt" />
+    <Content Include="App_Data\Small dataset\documents\0At5T0FYEP0.txt" />
+    <Content Include="App_Data\Small dataset\documents\0oRUoQYnqG0.txt" />
+    <Content Include="App_Data\Small dataset\documents\0x3avmoGq5E.txt" />
+    <Content Include="App_Data\Small dataset\documents\0y_fcjj_Aio.txt" />
+    <Content Include="App_Data\Small dataset\documents\0ZguWLN2VH8.txt" />
+    <Content Include="App_Data\Small dataset\documents\0_V-z6QcaWc.txt" />
+    <Content Include="App_Data\Small dataset\documents\1GfRdVnU2l4.txt" />
+    <Content Include="App_Data\Small dataset\documents\1yynLCFRuAk.txt" />
+    <Content Include="App_Data\Small dataset\documents\230ixIoiZN8.txt" />
+    <Content Include="App_Data\Small dataset\documents\25MFy2NV-1Q.txt" />
+    <Content Include="App_Data\Small dataset\documents\2gJlyzHwFtA.txt" />
+    <Content Include="App_Data\Small dataset\documents\2i4t-SL1VsU.txt" />
+    <Content Include="App_Data\Small dataset\documents\2jl3ovoy26Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\2rd8AplvJek.txt" />
+    <Content Include="App_Data\Small dataset\documents\2s7UAscFUDw.txt" />
+    <Content Include="App_Data\Small dataset\documents\2Vo3rm5mnA4.txt" />
+    <Content Include="App_Data\Small dataset\documents\3-EY-_jpYFs.txt" />
+    <Content Include="App_Data\Small dataset\documents\38ZQIOagZeU.txt" />
+    <Content Include="App_Data\Small dataset\documents\3aYYrzl3xzk.txt" />
+    <Content Include="App_Data\Small dataset\documents\3bAa0fAFCpg.txt" />
+    <Content Include="App_Data\Small dataset\documents\3bLG6HRCFLk.txt" />
+    <Content Include="App_Data\Small dataset\documents\3Gfmkgaj17w.txt" />
+    <Content Include="App_Data\Small dataset\documents\3hFQ9JReBcs.txt" />
+    <Content Include="App_Data\Small dataset\documents\3ILIFUoFxmE.txt" />
+    <Content Include="App_Data\Small dataset\documents\3jVv7qyIsjA.txt" />
+    <Content Include="App_Data\Small dataset\documents\3vZ-JbTTa6s.txt" />
+    <Content Include="App_Data\Small dataset\documents\3_cQVihB_Vw.txt" />
+    <Content Include="App_Data\Small dataset\documents\41q4e5LUlOk.txt" />
+    <Content Include="App_Data\Small dataset\documents\47bS8g0IeWQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\494GB5eMwl4.txt" />
+    <Content Include="App_Data\Small dataset\documents\4Lrlm2AFKBw.txt" />
+    <Content Include="App_Data\Small dataset\documents\4MNBBrkqC6Q.txt" />
+    <Content Include="App_Data\Small dataset\documents\4V_dO2-dLZM.txt" />
+    <Content Include="App_Data\Small dataset\documents\4wbFRItSoYE.txt" />
+    <Content Include="App_Data\Small dataset\documents\4ZMSPoAeX80.txt" />
+    <Content Include="App_Data\Small dataset\documents\5-yc-4QJq8E.txt" />
+    <Content Include="App_Data\Small dataset\documents\511-wPQd4qc.txt" />
+    <Content Include="App_Data\Small dataset\documents\55iMa-yWmcs.txt" />
+    <Content Include="App_Data\Small dataset\documents\58Yhyg8Iw7A.txt" />
+    <Content Include="App_Data\Small dataset\documents\5Awv5cqrNoI.txt" />
+    <Content Include="App_Data\Small dataset\documents\5dh6Ok_zhsI.txt" />
+    <Content Include="App_Data\Small dataset\documents\5JryHrxLebQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\5P4a8lvZwTI.txt" />
+    <Content Include="App_Data\Small dataset\documents\5Sy7sxxQlpc.txt" />
+    <Content Include="App_Data\Small dataset\documents\5u34IjpC35E.txt" />
+    <Content Include="App_Data\Small dataset\documents\5VyDsO0mFDU.txt" />
+    <Content Include="App_Data\Small dataset\documents\5xCVBVcl0c0.txt" />
+    <Content Include="App_Data\Small dataset\documents\6-Nug5V7M1Q.txt" />
+    <Content Include="App_Data\Small dataset\documents\66crhKstr70.txt" />
+    <Content Include="App_Data\Small dataset\documents\67sO_BSrEHs.txt" />
+    <Content Include="App_Data\Small dataset\documents\6aETovoRqEA.txt" />
+    <Content Include="App_Data\Small dataset\documents\6DkigZMPwfo.txt" />
+    <Content Include="App_Data\Small dataset\documents\6iCju49gk-Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\6KchOPnozRg.txt" />
+    <Content Include="App_Data\Small dataset\documents\6MisF1sxBTo.txt" />
+    <Content Include="App_Data\Small dataset\documents\6MpRhgQOSwA.txt" />
+    <Content Include="App_Data\Small dataset\documents\6r1Ubu-QMd8.txt" />
+    <Content Include="App_Data\Small dataset\documents\6S6U1WMV7PY.txt" />
+    <Content Include="App_Data\Small dataset\documents\6ydMXI7pNjY.txt" />
+    <Content Include="App_Data\Small dataset\documents\7-8dQYnaMI4.txt" />
+    <Content Include="App_Data\Small dataset\documents\78nSYSQO0H0.txt" />
+    <Content Include="App_Data\Small dataset\documents\7bBuffsk_MI.txt" />
+    <Content Include="App_Data\Small dataset\documents\7BnGZCvFFJs.txt" />
+    <Content Include="App_Data\Small dataset\documents\7CzFs_EHpX4.txt" />
+    <Content Include="App_Data\Small dataset\documents\7g3B-zS68hQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\7ggM3L-lsbs.txt" />
+    <Content Include="App_Data\Small dataset\documents\7ioEuhtZHZA.txt" />
+    <Content Include="App_Data\Small dataset\documents\7OsBXFCFUAc.txt" />
+    <Content Include="App_Data\Small dataset\documents\7THZG-FfpLI.txt" />
+    <Content Include="App_Data\Small dataset\documents\7TzrCCI2TaE.txt" />
+    <Content Include="App_Data\Small dataset\documents\7V3589CReug.txt" />
+    <Content Include="App_Data\Small dataset\documents\7VEDSq-3IAo.txt" />
+    <Content Include="App_Data\Small dataset\documents\7YanzgQLf_A.txt" />
+    <Content Include="App_Data\Small dataset\documents\8-iQDUl10vM.txt" />
+    <Content Include="App_Data\Small dataset\documents\83pP57BJTjw.txt" />
+    <Content Include="App_Data\Small dataset\documents\8HW6z_AV1Uw.txt" />
+    <Content Include="App_Data\Small dataset\documents\8IZYjfQBhFQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\8rbUxutMzFE.txt" />
+    <Content Include="App_Data\Small dataset\documents\8tej_oPOLa0.txt" />
+    <Content Include="App_Data\Small dataset\documents\8XWZqVemN6c.txt" />
+    <Content Include="App_Data\Small dataset\documents\92HEIxb7Py8.txt" />
+    <Content Include="App_Data\Small dataset\documents\95X-pHvGBnw.txt" />
+    <Content Include="App_Data\Small dataset\documents\9aA9LIEBRQ8.txt" />
+    <Content Include="App_Data\Small dataset\documents\9eZB8u_nxBE.txt" />
+    <Content Include="App_Data\Small dataset\documents\9FjA9Eym9Rw.txt" />
+    <Content Include="App_Data\Small dataset\documents\9kZYYK9m0zI.txt" />
+    <Content Include="App_Data\Small dataset\documents\9LvjDRkjIF4.txt" />
+    <Content Include="App_Data\Small dataset\documents\9v-zQk22EEc.txt" />
+    <Content Include="App_Data\Small dataset\documents\9vQTuwObuWo.txt" />
+    <Content Include="App_Data\Small dataset\documents\9w679ZPJPyw.txt" />
+    <Content Include="App_Data\Small dataset\documents\9W7A89M6a28.txt" />
+    <Content Include="App_Data\Small dataset\documents\9_tboZK-508.txt" />
+    <Content Include="App_Data\Small dataset\documents\ABg-CO4Oqag.txt" />
+    <Content Include="App_Data\Small dataset\documents\abrbgtSNP6M.txt" />
+    <Content Include="App_Data\Small dataset\documents\AdA3eYjIfLo.txt" />
+    <Content Include="App_Data\Small dataset\documents\ADLmRWZqFOI.txt" />
+    <Content Include="App_Data\Small dataset\documents\Ag3amC68jaM.txt" />
+    <Content Include="App_Data\Small dataset\documents\ahEKFqi3__I.txt" />
+    <Content Include="App_Data\Small dataset\documents\AjHplrVgdFw.txt" />
+    <Content Include="App_Data\Small dataset\documents\Ajl-YgRRDXE.txt" />
+    <Content Include="App_Data\Small dataset\documents\AKLoOaVzIxU.txt" />
+    <Content Include="App_Data\Small dataset\documents\AMg2_saahlA.txt" />
+    <Content Include="App_Data\Small dataset\documents\aO0EDoeG6ts.txt" />
+    <Content Include="App_Data\Small dataset\documents\aofWzWlMC5k.txt" />
+    <Content Include="App_Data\Small dataset\documents\aPh2S5jJKgM.txt" />
+    <Content Include="App_Data\Small dataset\documents\APZ17LsFt-k.txt" />
+    <Content Include="App_Data\Small dataset\documents\aqAajTpzK3o.txt" />
+    <Content Include="App_Data\Small dataset\documents\av-VSQvf9YM.txt" />
+    <Content Include="App_Data\Small dataset\documents\AVbZk9YXlJQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\aWcov4OmW1I.txt" />
+    <Content Include="App_Data\Small dataset\documents\AzDV8v-8GAw.txt" />
+    <Content Include="App_Data\Small dataset\documents\B-_6e_k01Yk.txt" />
+    <Content Include="App_Data\Small dataset\documents\B4klp5EKakk.txt" />
+    <Content Include="App_Data\Small dataset\documents\barZFRdpfeM.txt" />
+    <Content Include="App_Data\Small dataset\documents\BbUmPDcr_DU.txt" />
+    <Content Include="App_Data\Small dataset\documents\BIHOMJ52-wM.txt" />
+    <Content Include="App_Data\Small dataset\documents\BjK5XF9wvS4.txt" />
+    <Content Include="App_Data\Small dataset\documents\BKhuXqJyYGc.txt" />
+    <Content Include="App_Data\Small dataset\documents\bmI7pZAfnHY.txt" />
+    <Content Include="App_Data\Small dataset\documents\bMwdya1TZpQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\BOTlurfP_MM.txt" />
+    <Content Include="App_Data\Small dataset\documents\bsg3xe8NVoQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\bsUdoeRmysc.txt" />
+    <Content Include="App_Data\Small dataset\documents\bvP_dNOUab8.txt" />
+    <Content Include="App_Data\Small dataset\documents\BWM2iVgeQKM.txt" />
+    <Content Include="App_Data\Small dataset\documents\bX4xvqj63BY.txt" />
+    <Content Include="App_Data\Small dataset\documents\bXcW8jncZoM.txt" />
+    <Content Include="App_Data\Small dataset\documents\bXTjK3iJYWE.txt" />
+    <Content Include="App_Data\Small dataset\documents\C-SQyPjP6Tw.txt" />
+    <Content Include="App_Data\Small dataset\documents\c0AjTt_tzUM.txt" />
+    <Content Include="App_Data\Small dataset\documents\C2wA0LpCQUQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\C3AnK8JRR_U.txt" />
+    <Content Include="App_Data\Small dataset\documents\c5CMcH4rJD4.txt" />
+    <Content Include="App_Data\Small dataset\documents\Ca6L4Xts5DE.txt" />
+    <Content Include="App_Data\Small dataset\documents\CBdyld0U5pM.txt" />
+    <Content Include="App_Data\Small dataset\documents\CFFLRmHsEAs.txt" />
+    <Content Include="App_Data\Small dataset\documents\Cfjn98li44Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\Ch088dtwG8c.txt" />
+    <Content Include="App_Data\Small dataset\documents\ci5inSSrktY.txt" />
+    <Content Include="App_Data\Small dataset\documents\CJxMwbJPisw.txt" />
+    <Content Include="App_Data\Small dataset\documents\cKlu6HQpJ_c.txt" />
+    <Content Include="App_Data\Small dataset\documents\cKn3l1fs1Tg.txt" />
+    <Content Include="App_Data\Small dataset\documents\cO9S9hRkCL8.txt" />
+    <Content Include="App_Data\Small dataset\documents\Cpvo55PH-To.txt" />
+    <Content Include="App_Data\Small dataset\documents\cRL5TorHINY.txt" />
+    <Content Include="App_Data\Small dataset\documents\Ctk54AhUnt8.txt" />
+    <Content Include="App_Data\Small dataset\documents\CwlRBM-LTwg.txt" />
+    <Content Include="App_Data\Small dataset\documents\cx92KgTc9bE.txt" />
+    <Content Include="App_Data\Small dataset\documents\CyivKK_XntU.txt" />
+    <Content Include="App_Data\Small dataset\documents\d4Q5GrevAtw.txt" />
+    <Content Include="App_Data\Small dataset\documents\d6suU-f3I-I.txt" />
+    <Content Include="App_Data\Small dataset\documents\dCLYPi57r8o.txt" />
+    <Content Include="App_Data\Small dataset\documents\DFkR-yYUWzU.txt" />
+    <Content Include="App_Data\Small dataset\documents\dGPYzu1s_Nk.txt" />
+    <Content Include="App_Data\Small dataset\documents\DJMIWwyvVAM.txt" />
+    <Content Include="App_Data\Small dataset\documents\dKCKqaQsCc0.txt" />
+    <Content Include="App_Data\Small dataset\documents\dKMSnakREuU.txt" />
+    <Content Include="App_Data\Small dataset\documents\dKZVEqxGMoc.txt" />
+    <Content Include="App_Data\Small dataset\documents\dPheFtOn6ww.txt" />
+    <Content Include="App_Data\Small dataset\documents\dq2nuPdp3hE.txt" />
+    <Content Include="App_Data\Small dataset\documents\DqAFQfbWZOU.txt" />
+    <Content Include="App_Data\Small dataset\documents\dqug_DDgGwg.txt" />
+    <Content Include="App_Data\Small dataset\documents\drjcIraHQCQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\dTSfcdQyKjY.txt" />
+    <Content Include="App_Data\Small dataset\documents\Du2SvfVVjoE.txt" />
+    <Content Include="App_Data\Small dataset\documents\dWHBbPurceE.txt" />
+    <Content Include="App_Data\Small dataset\documents\dWMe_YbhzBg.txt" />
+    <Content Include="App_Data\Small dataset\documents\dYj-GmOesBY.txt" />
+    <Content Include="App_Data\Small dataset\documents\E0kg5V88gY4.txt" />
+    <Content Include="App_Data\Small dataset\documents\E2ILbnggHI0.txt" />
+    <Content Include="App_Data\Small dataset\documents\elAfSosKGcc.txt" />
+    <Content Include="App_Data\Small dataset\documents\ELBN9LNWavQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\elvdr4DjnV0.txt" />
+    <Content Include="App_Data\Small dataset\documents\eMh_yHZkcQ8.txt" />
+    <Content Include="App_Data\Small dataset\documents\eN8qSoqfLyo.txt" />
+    <Content Include="App_Data\Small dataset\documents\epXQMbnmlcY.txt" />
+    <Content Include="App_Data\Small dataset\documents\EQ92AaFU2Lc.txt" />
+    <Content Include="App_Data\Small dataset\documents\erOamvpiXmY.txt" />
+    <Content Include="App_Data\Small dataset\documents\eSfdkmoLTvg.txt" />
+    <Content Include="App_Data\Small dataset\documents\esnu0412Ebo.txt" />
+    <Content Include="App_Data\Small dataset\documents\evIGdOzKCYk.txt" />
+    <Content Include="App_Data\Small dataset\documents\EwuiANvxFsI.txt" />
+    <Content Include="App_Data\Small dataset\documents\E_G6Va2odeA.txt" />
+    <Content Include="App_Data\Small dataset\documents\F5yhNqMhN6s.txt" />
+    <Content Include="App_Data\Small dataset\documents\f8lCiYquj28.txt" />
+    <Content Include="App_Data\Small dataset\documents\FC3vh2poGm8.txt" />
+    <Content Include="App_Data\Small dataset\documents\fe4TxP7cnc8.txt" />
+    <Content Include="App_Data\Small dataset\documents\fhfVkPpIwjk.txt" />
+    <Content Include="App_Data\Small dataset\documents\Fj-cmQ55J5Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\FLIbjPuq4OI.txt" />
+    <Content Include="App_Data\Small dataset\documents\fMPWufcq604.txt" />
+    <Content Include="App_Data\Small dataset\documents\FMwbcnC6oJE.txt" />
+    <Content Include="App_Data\Small dataset\documents\fNbsvYAz72g.txt" />
+    <Content Include="App_Data\Small dataset\documents\FrOJxAgDP_w.txt" />
+    <Content Include="App_Data\Small dataset\documents\FT42g9kfXOE.txt" />
+    <Content Include="App_Data\Small dataset\documents\FtRJLva8Yms.txt" />
+    <Content Include="App_Data\Small dataset\documents\FvKoT1tFyBM.txt" />
+    <Content Include="App_Data\Small dataset\documents\fVxTHeU2mEg.txt" />
+    <Content Include="App_Data\Small dataset\documents\fX1xNMBTMfg.txt" />
+    <Content Include="App_Data\Small dataset\documents\FYtd-xtYVNg.txt" />
+    <Content Include="App_Data\Small dataset\documents\fZMUMNqf6mg.txt" />
+    <Content Include="App_Data\Small dataset\documents\f_cXS_M3V8M.txt" />
+    <Content Include="App_Data\Small dataset\documents\g8mZW8tQ2ZU.txt" />
+    <Content Include="App_Data\Small dataset\documents\g9WN1J-tsKQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\ga46rWwdjJY.txt" />
+    <Content Include="App_Data\Small dataset\documents\GAdoRhDugfQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\GhEoCNEPdhY.txt" />
+    <Content Include="App_Data\Small dataset\documents\gJBygHnm3c4.txt" />
+    <Content Include="App_Data\Small dataset\documents\glhxlourXyw.txt" />
+    <Content Include="App_Data\Small dataset\documents\gnbku06HpRk.txt" />
+    <Content Include="App_Data\Small dataset\documents\GOU9ifAoIKQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\gp1zTlWdVdI.txt" />
+    <Content Include="App_Data\Small dataset\documents\gpfFkLlbcP0.txt" />
+    <Content Include="App_Data\Small dataset\documents\GS2AEH8kcRk.txt" />
+    <Content Include="App_Data\Small dataset\documents\GsIDWmrqRg4.txt" />
+    <Content Include="App_Data\Small dataset\documents\gU3DLOsw0Eg.txt" />
+    <Content Include="App_Data\Small dataset\documents\gUCBCB0Om-8.txt" />
+    <Content Include="App_Data\Small dataset\documents\gUSjrIz7Gas.txt" />
+    <Content Include="App_Data\Small dataset\documents\GV35mEoF6Q4.txt" />
+    <Content Include="App_Data\Small dataset\documents\GxLVuf9Yz6w.txt" />
+    <Content Include="App_Data\Small dataset\documents\H6Aaxle8DE4.txt" />
+    <Content Include="App_Data\Small dataset\documents\hBp9HvXOHxQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\HCLNQz8pxUM.txt" />
+    <Content Include="App_Data\Small dataset\documents\hcY8cYfAEwU.txt" />
+    <Content Include="App_Data\Small dataset\documents\hdNfx3DNHRQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\hElH5g672i0.txt" />
+    <Content Include="App_Data\Small dataset\documents\HHHXwt6I6GQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\Hhja1xMjJF0.txt" />
+    <Content Include="App_Data\Small dataset\documents\HIKDk3UhzAk.txt" />
+    <Content Include="App_Data\Small dataset\documents\hlGEKd-HqYI.txt" />
+    <Content Include="App_Data\Small dataset\documents\hNvkR1LiV0w.txt" />
+    <Content Include="App_Data\Small dataset\documents\hshWDPWsZAU.txt" />
+    <Content Include="App_Data\Small dataset\documents\hZ1EU-F-0nU.txt" />
+    <Content Include="App_Data\Small dataset\documents\i43XlLlcjN4.txt" />
+    <Content Include="App_Data\Small dataset\documents\iAPf4xzYDp8.txt" />
+    <Content Include="App_Data\Small dataset\documents\iCgiAkZFZEs.txt" />
+    <Content Include="App_Data\Small dataset\documents\ICSrmaxxThU.txt" />
+    <Content Include="App_Data\Small dataset\documents\iD0aG6LhIgk.txt" />
+    <Content Include="App_Data\Small dataset\documents\iEXr2EhJUTw.txt" />
+    <Content Include="App_Data\Small dataset\documents\igon6VgCSfI.txt" />
+    <Content Include="App_Data\Small dataset\documents\InoExygAFFE.txt" />
+    <Content Include="App_Data\Small dataset\documents\iom2QO8Kk-A.txt" />
+    <Content Include="App_Data\Small dataset\documents\IpRYSyQzLwk.txt" />
+    <Content Include="App_Data\Small dataset\documents\iUkLRm0-tOk.txt" />
+    <Content Include="App_Data\Small dataset\documents\IuqJomh8Fx8.txt" />
+    <Content Include="App_Data\Small dataset\documents\Iy8wR_mHXCo.txt" />
+    <Content Include="App_Data\Small dataset\documents\iYb5pWr7KNc.txt" />
+    <Content Include="App_Data\Small dataset\documents\j23iGumqRPg.txt" />
+    <Content Include="App_Data\Small dataset\documents\j2QjMXxJUeU.txt" />
+    <Content Include="App_Data\Small dataset\documents\j49mg31jTWE.txt" />
+    <Content Include="App_Data\Small dataset\documents\j5VY42Cbwyg.txt" />
+    <Content Include="App_Data\Small dataset\documents\JAn_bO64HUI.txt" />
+    <Content Include="App_Data\Small dataset\documents\JDVa0H9O1Jk.txt" />
+    <Content Include="App_Data\Small dataset\documents\jhfdsDVseeU.txt" />
+    <Content Include="App_Data\Small dataset\documents\Ji4geHitwuA.txt" />
+    <Content Include="App_Data\Small dataset\documents\jIvbLasOUdQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\jjZQUf-FJAg.txt" />
+    <Content Include="App_Data\Small dataset\documents\JK7ltJLCgqM.txt" />
+    <Content Include="App_Data\Small dataset\documents\jLMUvItY3fI.txt" />
+    <Content Include="App_Data\Small dataset\documents\JMEVi_t38uc.txt" />
+    <Content Include="App_Data\Small dataset\documents\Jn2VBeF8-qI.txt" />
+    <Content Include="App_Data\Small dataset\documents\JPJjcMeyCwE.txt" />
+    <Content Include="App_Data\Small dataset\documents\jxHWfxBFPvU.txt" />
+    <Content Include="App_Data\Small dataset\documents\Jyc2brswNQo.txt" />
+    <Content Include="App_Data\Small dataset\documents\JyMkANs3vhI.txt" />
+    <Content Include="App_Data\Small dataset\documents\JZn4hlMvP60.txt" />
+    <Content Include="App_Data\Small dataset\documents\k0ggir00hUY.txt" />
+    <Content Include="App_Data\Small dataset\documents\k2trnPtCXJw.txt" />
+    <Content Include="App_Data\Small dataset\documents\K4YVpwihRpo.txt" />
+    <Content Include="App_Data\Small dataset\documents\KD6VuIbfIew.txt" />
+    <Content Include="App_Data\Small dataset\documents\KhwbCmDrXxA.txt" />
+    <Content Include="App_Data\Small dataset\documents\KjbfH7FCsjA.txt" />
+    <Content Include="App_Data\Small dataset\documents\KmEpUwXA2cQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\KMS7RmvBY-s.txt" />
+    <Content Include="App_Data\Small dataset\documents\KrkqieGBoII.txt" />
+    <Content Include="App_Data\Small dataset\documents\kTfH-nPyaBY.txt" />
+    <Content Include="App_Data\Small dataset\documents\KVX9qlqNwSg.txt" />
+    <Content Include="App_Data\Small dataset\documents\KWlK7Qzi8JU.txt" />
+    <Content Include="App_Data\Small dataset\documents\kxdwYWGiD80.txt" />
+    <Content Include="App_Data\Small dataset\documents\kY22NSBwV_s.txt" />
+    <Content Include="App_Data\Small dataset\documents\KZc9n64rYqU.txt" />
+    <Content Include="App_Data\Small dataset\documents\kZpMoeUqK-A.txt" />
+    <Content Include="App_Data\Small dataset\documents\L-7zLgoFTmM.txt" />
+    <Content Include="App_Data\Small dataset\documents\L-LEq_Ee44Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\l-mZqJCURjs.txt" />
+    <Content Include="App_Data\Small dataset\documents\l1suIHevoKU.txt" />
+    <Content Include="App_Data\Small dataset\documents\l64wPJZLMF0.txt" />
+    <Content Include="App_Data\Small dataset\documents\L8LZLLIkBQU.txt" />
+    <Content Include="App_Data\Small dataset\documents\L99IMKJpBNw.txt" />
+    <Content Include="App_Data\Small dataset\documents\lcbHHXAONqg.txt" />
+    <Content Include="App_Data\Small dataset\documents\LeYZGXqLyWc.txt" />
+    <Content Include="App_Data\Small dataset\documents\LH7ZwSLtnCM.txt" />
+    <Content Include="App_Data\Small dataset\documents\lHK0eDdiiwo.txt" />
+    <Content Include="App_Data\Small dataset\documents\lHsCXS5JNqA.txt" />
+    <Content Include="App_Data\Small dataset\documents\Libvk8HUxak.txt" />
+    <Content Include="App_Data\Small dataset\documents\lm9Hh9lApJA.txt" />
+    <Content Include="App_Data\Small dataset\documents\LmRapVzayvM.txt" />
+    <Content Include="App_Data\Small dataset\documents\LpWN43oJBr4.txt" />
+    <Content Include="App_Data\Small dataset\documents\lqRBVtm-vAI.txt" />
+    <Content Include="App_Data\Small dataset\documents\Lr1S0EbJtcQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\lRUQrSJcBNI.txt" />
+    <Content Include="App_Data\Small dataset\documents\Ls-NHebXY20.txt" />
+    <Content Include="App_Data\Small dataset\documents\lsAyTeUUXHk.txt" />
+    <Content Include="App_Data\Small dataset\documents\ly1yXEFlAsU.txt" />
+    <Content Include="App_Data\Small dataset\documents\lzkrHslKNzU.txt" />
+    <Content Include="App_Data\Small dataset\documents\M1y9DQ8T-QU.txt" />
+    <Content Include="App_Data\Small dataset\documents\m3_fruCB67w.txt" />
+    <Content Include="App_Data\Small dataset\documents\m6t8z3CWskA.txt" />
+    <Content Include="App_Data\Small dataset\documents\m790cqOnN9o.txt" />
+    <Content Include="App_Data\Small dataset\documents\M7Qf5GHMi9k.txt" />
+    <Content Include="App_Data\Small dataset\documents\MAlYhnzTtPY.txt" />
+    <Content Include="App_Data\Small dataset\documents\maZhwdxQlNI.txt" />
+    <Content Include="App_Data\Small dataset\documents\MBBYvOFi3RM.txt" />
+    <Content Include="App_Data\Small dataset\documents\mBEJv7AU1lg.txt" />
+    <Content Include="App_Data\Small dataset\documents\MBNviNaEPNI.txt" />
+    <Content Include="App_Data\Small dataset\documents\Me5kuDPnp58.txt" />
+    <Content Include="App_Data\Small dataset\documents\meHXrsajgEg.txt" />
+    <Content Include="App_Data\Small dataset\documents\mFCk31FoUg4.txt" />
+    <Content Include="App_Data\Small dataset\documents\mhEHGkn98_c.txt" />
+    <Content Include="App_Data\Small dataset\documents\MLL5tfdCs8Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\MOgl6plidow.txt" />
+    <Content Include="App_Data\Small dataset\documents\mP3uBWBGrXg.txt" />
+    <Content Include="App_Data\Small dataset\documents\msBXGIlkf_s.txt" />
+    <Content Include="App_Data\Small dataset\documents\MSzVHnG-zyU.txt" />
+    <Content Include="App_Data\Small dataset\documents\MtIYkYcsoJY.txt" />
+    <Content Include="App_Data\Small dataset\documents\MUdobP84q3Q.txt" />
+    <Content Include="App_Data\Small dataset\documents\munWIJBHajM.txt" />
+    <Content Include="App_Data\Small dataset\documents\MVFaQyhMpJg.txt" />
+    <Content Include="App_Data\Small dataset\documents\mVqXWrdeOro.txt" />
+    <Content Include="App_Data\Small dataset\documents\MxfmXw2O64E.txt" />
+    <Content Include="App_Data\Small dataset\documents\My3Slhiy444.txt" />
+    <Content Include="App_Data\Small dataset\documents\N3c8ewLMCYY.txt" />
+    <Content Include="App_Data\Small dataset\documents\N3IqtUONDkg.txt" />
+    <Content Include="App_Data\Small dataset\documents\N6cBwpxiioY.txt" />
+    <Content Include="App_Data\Small dataset\documents\n7NMW870noQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\naY_H36JAXY.txt" />
+    <Content Include="App_Data\Small dataset\documents\NC7CiHXLcWQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\NCopBacMj7w.txt" />
+    <Content Include="App_Data\Small dataset\documents\NL2fvdm7Fds.txt" />
+    <Content Include="App_Data\Small dataset\documents\nLOC7ReZMiw.txt" />
+    <Content Include="App_Data\Small dataset\documents\nM2u7wHSVsM.txt" />
+    <Content Include="App_Data\Small dataset\documents\nMVasbZDkwA.txt" />
+    <Content Include="App_Data\Small dataset\documents\NOSizxNRBdg.txt" />
+    <Content Include="App_Data\Small dataset\documents\NqfbQ1w0Ias.txt" />
+    <Content Include="App_Data\Small dataset\documents\nR0aNcWQn_I.txt" />
+    <Content Include="App_Data\Small dataset\documents\nTKroNSKjB4.txt" />
+    <Content Include="App_Data\Small dataset\documents\nW13FmTdkjc.txt" />
+    <Content Include="App_Data\Small dataset\documents\nxSptRoIih0.txt" />
+    <Content Include="App_Data\Small dataset\documents\NYi6P5uCHn4.txt" />
+    <Content Include="App_Data\Small dataset\documents\NzCy7e7DAE8.txt" />
+    <Content Include="App_Data\Small dataset\documents\O0xFVUZNvIk.txt" />
+    <Content Include="App_Data\Small dataset\documents\O16KK1xae5Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\o5fKNmcgjDI.txt" />
+    <Content Include="App_Data\Small dataset\documents\obTxwzzwc3g.txt" />
+    <Content Include="App_Data\Small dataset\documents\ODpGkIZwrYs.txt" />
+    <Content Include="App_Data\Small dataset\documents\oduIc4jjY-M.txt" />
+    <Content Include="App_Data\Small dataset\documents\Oef7Aiqnzf4.txt" />
+    <Content Include="App_Data\Small dataset\documents\OHbSx2iVujE.txt" />
+    <Content Include="App_Data\Small dataset\documents\oiaEP57nsmI.txt" />
+    <Content Include="App_Data\Small dataset\documents\OjKwzTy3pRA.txt" />
+    <Content Include="App_Data\Small dataset\documents\oOJ2Ysi9pJg.txt" />
+    <Content Include="App_Data\Small dataset\documents\OOpO46_k7Uo.txt" />
+    <Content Include="App_Data\Small dataset\documents\oQ4JevB-Ik8.txt" />
+    <Content Include="App_Data\Small dataset\documents\OrsdvCndArY.txt" />
+    <Content Include="App_Data\Small dataset\documents\OT6XvxN9AWk.txt" />
+    <Content Include="App_Data\Small dataset\documents\oxr6v8K5S_o.txt" />
+    <Content Include="App_Data\Small dataset\documents\p0tQZkh7wvk.txt" />
+    <Content Include="App_Data\Small dataset\documents\P3mVhTQl8F8.txt" />
+    <Content Include="App_Data\Small dataset\documents\P7U7BP2VdgE.txt" />
+    <Content Include="App_Data\Small dataset\documents\P8w9ZSAShNs.txt" />
+    <Content Include="App_Data\Small dataset\documents\pb_t5_ShQOM.txt" />
+    <Content Include="App_Data\Small dataset\documents\PglfPO9QbRc.txt" />
+    <Content Include="App_Data\Small dataset\documents\PgTBrzR8TJg.txt" />
+    <Content Include="App_Data\Small dataset\documents\PH8AxwGRYjM.txt" />
+    <Content Include="App_Data\Small dataset\documents\PI1ooLLFBZA.txt" />
+    <Content Include="App_Data\Small dataset\documents\pq0ArQhhWzU.txt" />
+    <Content Include="App_Data\Small dataset\documents\PUyepM72q0s.txt" />
+    <Content Include="App_Data\Small dataset\documents\pvPKC8i2ZWc.txt" />
+    <Content Include="App_Data\Small dataset\documents\pytADme1IV4.txt" />
+    <Content Include="App_Data\Small dataset\documents\pZMadAb-es8.txt" />
+    <Content Include="App_Data\Small dataset\documents\Q0drI_LVIHE.txt" />
+    <Content Include="App_Data\Small dataset\documents\q1ZL3YRvrDM.txt" />
+    <Content Include="App_Data\Small dataset\documents\Q2IYNfbYdqQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\q3viTS_Ruw4.txt" />
+    <Content Include="App_Data\Small dataset\documents\Q4T7jg0Lv4E.txt" />
+    <Content Include="App_Data\Small dataset\documents\qcd2BA2GBPo.txt" />
+    <Content Include="App_Data\Small dataset\documents\QcqYNT6VQso.txt" />
+    <Content Include="App_Data\Small dataset\documents\QFGqM1H0bQ0.txt" />
+    <Content Include="App_Data\Small dataset\documents\QfxolfMq-_I.txt" />
+    <Content Include="App_Data\Small dataset\documents\qk2iS0nHeWM.txt" />
+    <Content Include="App_Data\Small dataset\documents\QqKlzfSGPYk.txt" />
+    <Content Include="App_Data\Small dataset\documents\QqzOVTfUvtU.txt" />
+    <Content Include="App_Data\Small dataset\documents\QRCeoKMHPII.txt" />
+    <Content Include="App_Data\Small dataset\documents\qs25LAG8hvE.txt" />
+    <Content Include="App_Data\Small dataset\documents\qufE7yFf3fQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\QZ85hGQ2zco.txt" />
+    <Content Include="App_Data\Small dataset\documents\R2AN6hLvGUE.txt" />
+    <Content Include="App_Data\Small dataset\documents\R7S65Dp3NEo.txt" />
+    <Content Include="App_Data\Small dataset\documents\r7TGqaoETHs.txt" />
+    <Content Include="App_Data\Small dataset\documents\raTfJjc0ASA.txt" />
+    <Content Include="App_Data\Small dataset\documents\rGajgsUPRyo.txt" />
+    <Content Include="App_Data\Small dataset\documents\rhckvG_-_JA.txt" />
+    <Content Include="App_Data\Small dataset\documents\rkyDLqFA5Eg.txt" />
+    <Content Include="App_Data\Small dataset\documents\rmJuOfPVEPA.txt" />
+    <Content Include="App_Data\Small dataset\documents\rmyHkRg8Ipg.txt" />
+    <Content Include="App_Data\Small dataset\documents\Rn9a-qzdSUs.txt" />
+    <Content Include="App_Data\Small dataset\documents\rOpHDa-eF_A.txt" />
+    <Content Include="App_Data\Small dataset\documents\rp71Pw2_fx4.txt" />
+    <Content Include="App_Data\Small dataset\documents\RQ3uxxYkhAw.txt" />
+    <Content Include="App_Data\Small dataset\documents\rqaTSVHvW0M.txt" />
+    <Content Include="App_Data\Small dataset\documents\rZ59PNt0HYQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\S37y-BHzTBc.txt" />
+    <Content Include="App_Data\Small dataset\documents\S4_ZKG8uOF0.txt" />
+    <Content Include="App_Data\Small dataset\documents\sEJq6WdKJf4.txt" />
+    <Content Include="App_Data\Small dataset\documents\sHrYSr5XmCo.txt" />
+    <Content Include="App_Data\Small dataset\documents\SNJOBpvqMLo.txt" />
+    <Content Include="App_Data\Small dataset\documents\soCLkhqxxrE.txt" />
+    <Content Include="App_Data\Small dataset\documents\sOpbAOX5nJs.txt" />
+    <Content Include="App_Data\Small dataset\documents\sp8BkjhUNCg.txt" />
+    <Content Include="App_Data\Small dataset\documents\ss-9j4Ta4EU.txt" />
+    <Content Include="App_Data\Small dataset\documents\stF4HB62_UM.txt" />
+    <Content Include="App_Data\Small dataset\documents\SwEzCBM7n-Q.txt" />
+    <Content Include="App_Data\Small dataset\documents\s_Es2BE69ic.txt" />
+    <Content Include="App_Data\Small dataset\documents\s_zTc1yaJIU.txt" />
+    <Content Include="App_Data\Small dataset\documents\t4WKxg8gdko.txt" />
+    <Content Include="App_Data\Small dataset\documents\TAzmgIrt3Fw.txt" />
+    <Content Include="App_Data\Small dataset\documents\TdDm7RRhyk8.txt" />
+    <Content Include="App_Data\Small dataset\documents\TirasUtJldI.txt" />
+    <Content Include="App_Data\Small dataset\documents\tLriM2krw2E.txt" />
+    <Content Include="App_Data\Small dataset\documents\tLVbYsH0OsI.txt" />
+    <Content Include="App_Data\Small dataset\documents\tnkDNAwNjKI.txt" />
+    <Content Include="App_Data\Small dataset\documents\TO9waUK-kHA.txt" />
+    <Content Include="App_Data\Small dataset\documents\toa-wTkpkxo.txt" />
+    <Content Include="App_Data\Small dataset\documents\TOYHlhqEplE.txt" />
+    <Content Include="App_Data\Small dataset\documents\TQls-N_TqMw.txt" />
+    <Content Include="App_Data\Small dataset\documents\tsv6bZ5VCEg.txt" />
+    <Content Include="App_Data\Small dataset\documents\tsz-assb1X8.txt" />
+    <Content Include="App_Data\Small dataset\documents\tVIIgcIqoPw.txt" />
+    <Content Include="App_Data\Small dataset\documents\tWX8veORfLw.txt" />
+    <Content Include="App_Data\Small dataset\documents\tymlQXi9yjk.txt" />
+    <Content Include="App_Data\Small dataset\documents\tZ9UDzJyF5k.txt" />
+    <Content Include="App_Data\Small dataset\documents\tZChsFZsgIk.txt" />
+    <Content Include="App_Data\Small dataset\documents\TZss5ukwN8s.txt" />
+    <Content Include="App_Data\Small dataset\documents\U25GZdi1G7s.txt" />
+    <Content Include="App_Data\Small dataset\documents\U7UJvo_Xz_I.txt" />
+    <Content Include="App_Data\Small dataset\documents\UaeoyZmZPKc.txt" />
+    <Content Include="App_Data\Small dataset\documents\UAZ5A7gG5vk.txt" />
+    <Content Include="App_Data\Small dataset\documents\uboP92adwh0.txt" />
+    <Content Include="App_Data\Small dataset\documents\UBPIYJwTHeo.txt" />
+    <Content Include="App_Data\Small dataset\documents\uhA4dUpRCYE.txt" />
+    <Content Include="App_Data\Small dataset\documents\uk9icGlODOc.txt" />
+    <Content Include="App_Data\Small dataset\documents\uL2D3qzHtqY.txt" />
+    <Content Include="App_Data\Small dataset\documents\uOXVBs0IChI.txt" />
+    <Content Include="App_Data\Small dataset\documents\uP76ychzJ4s.txt" />
+    <Content Include="App_Data\Small dataset\documents\UqCFPEVZZcc.txt" />
+    <Content Include="App_Data\Small dataset\documents\uQ_MyVDiSbo.txt" />
+    <Content Include="App_Data\Small dataset\documents\UyzGDAW8GdA.txt" />
+    <Content Include="App_Data\Small dataset\documents\uZZZsdCCoS0.txt" />
+    <Content Include="App_Data\Small dataset\documents\v1MssnSGGVs.txt" />
+    <Content Include="App_Data\Small dataset\documents\V3GIQ8-ggVk.txt" />
+    <Content Include="App_Data\Small dataset\documents\v3j8XftvjXo.txt" />
+    <Content Include="App_Data\Small dataset\documents\V9DU_eJuEr8.txt" />
+    <Content Include="App_Data\Small dataset\documents\VbMWqfEtbMo.txt" />
+    <Content Include="App_Data\Small dataset\documents\vClEAWgobpw.txt" />
+    <Content Include="App_Data\Small dataset\documents\vCM7PG_b6VE.txt" />
+    <Content Include="App_Data\Small dataset\documents\vdtowtOTGng.txt" />
+    <Content Include="App_Data\Small dataset\documents\VH7GgzkBD-w.txt" />
+    <Content Include="App_Data\Small dataset\documents\VH9e2hG_rAY.txt" />
+    <Content Include="App_Data\Small dataset\documents\VkMMBZd_2I8.txt" />
+    <Content Include="App_Data\Small dataset\documents\vlwvvNM71VY.txt" />
+    <Content Include="App_Data\Small dataset\documents\vmRUqajLIuM.txt" />
+    <Content Include="App_Data\Small dataset\documents\VTW7GdLMuh4.txt" />
+    <Content Include="App_Data\Small dataset\documents\vwNmYVipzeA.txt" />
+    <Content Include="App_Data\Small dataset\documents\v_ZCtgwbS3o.txt" />
+    <Content Include="App_Data\Small dataset\documents\W-HRuz3RAIM.txt" />
+    <Content Include="App_Data\Small dataset\documents\w3809Z-c7a8.txt" />
+    <Content Include="App_Data\Small dataset\documents\w8F7mQ5ErLM.txt" />
+    <Content Include="App_Data\Small dataset\documents\W8N_vy-ublo.txt" />
+    <Content Include="App_Data\Small dataset\documents\WBRZoTovkWE.txt" />
+    <Content Include="App_Data\Small dataset\documents\wEBWlMJa1Ic.txt" />
+    <Content Include="App_Data\Small dataset\documents\wGiHFyqGfOk.txt" />
+    <Content Include="App_Data\Small dataset\documents\WKAbPMDJqMk.txt" />
+    <Content Include="App_Data\Small dataset\documents\WlsD2FiBIbg.txt" />
+    <Content Include="App_Data\Small dataset\documents\wLVo7_t629A.txt" />
+    <Content Include="App_Data\Small dataset\documents\Wne_og9k1vo.txt" />
+    <Content Include="App_Data\Small dataset\documents\WtRZ5Tuwzkg.txt" />
+    <Content Include="App_Data\Small dataset\documents\WTto0CWwDVo.txt" />
+    <Content Include="App_Data\Small dataset\documents\wVDlnwJzlE0.txt" />
+    <Content Include="App_Data\Small dataset\documents\WWs53zELeHM.txt" />
+    <Content Include="App_Data\Small dataset\documents\WxZ-pG_HSko.txt" />
+    <Content Include="App_Data\Small dataset\documents\w_xZhDDOKOc.txt" />
+    <Content Include="App_Data\Small dataset\documents\x3lcQrfOrP0.txt" />
+    <Content Include="App_Data\Small dataset\documents\X6BiTCQTFDk.txt" />
+    <Content Include="App_Data\Small dataset\documents\Xbj81TwsbLQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\Xca74PmtZeo.txt" />
+    <Content Include="App_Data\Small dataset\documents\xdNWuotcQrQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\xF9r2xWhBLo.txt" />
+    <Content Include="App_Data\Small dataset\documents\xG3pgP7ggms.txt" />
+    <Content Include="App_Data\Small dataset\documents\xGiRmweSO1g.txt" />
+    <Content Include="App_Data\Small dataset\documents\XhHvBWMQG5Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\XKLvHOHjJj8.txt" />
+    <Content Include="App_Data\Small dataset\documents\xLdVCbz_KQY.txt" />
+    <Content Include="App_Data\Small dataset\documents\XNCXoYleJ9E.txt" />
+    <Content Include="App_Data\Small dataset\documents\xO6cU5UE23Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\XPoQMoVGCLg.txt" />
+    <Content Include="App_Data\Small dataset\documents\xqlznn85EzI.txt" />
+    <Content Include="App_Data\Small dataset\documents\xr3dzlrxh3c.txt" />
+    <Content Include="App_Data\Small dataset\documents\xur-ldIGqjk.txt" />
+    <Content Include="App_Data\Small dataset\documents\XvqteVPHI6Y.txt" />
+    <Content Include="App_Data\Small dataset\documents\xYU161rVMJs.txt" />
+    <Content Include="App_Data\Small dataset\documents\xZH_BOehEjM.txt" />
+    <Content Include="App_Data\Small dataset\documents\XZqJ8ZB_eVM.txt" />
+    <Content Include="App_Data\Small dataset\documents\Y0k7RGWMpvo.txt" />
+    <Content Include="App_Data\Small dataset\documents\Y8Bym8GqlME.txt" />
+    <Content Include="App_Data\Small dataset\documents\yAh1qMTO1NA.txt" />
+    <Content Include="App_Data\Small dataset\documents\yc7ghnW7XVI.txt" />
+    <Content Include="App_Data\Small dataset\documents\YK7oqBgXpZE.txt" />
+    <Content Include="App_Data\Small dataset\documents\YKX4whyIu3k.txt" />
+    <Content Include="App_Data\Small dataset\documents\YLljxgnWMTs.txt" />
+    <Content Include="App_Data\Small dataset\documents\ynXjh6jbeQ0.txt" />
+    <Content Include="App_Data\Small dataset\documents\YRfbenxk-Ic.txt" />
+    <Content Include="App_Data\Small dataset\documents\yrVUegwSKlY.txt" />
+    <Content Include="App_Data\Small dataset\documents\ythUl5ykZTQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\yvaY-dtyMjE.txt" />
+    <Content Include="App_Data\Small dataset\documents\YWltxqyHHbM.txt" />
+    <Content Include="App_Data\Small dataset\documents\yxwdKX7ErJ4.txt" />
+    <Content Include="App_Data\Small dataset\documents\zIyPw0LSCg4.txt" />
+    <Content Include="App_Data\Small dataset\documents\zRIqpYC60B8.txt" />
+    <Content Include="App_Data\Small dataset\documents\ZtEyZuXgUoY.txt" />
+    <Content Include="App_Data\Small dataset\documents\zwCVNR3wibA.txt" />
+    <Content Include="App_Data\Small dataset\documents\ZxkRBQC65ZI.txt" />
+    <Content Include="App_Data\Small dataset\documents\Zy4wdoafGJ0.txt" />
+    <Content Include="App_Data\Small dataset\documents\ZYIg_TwH_b4.txt" />
+    <Content Include="App_Data\Small dataset\documents\_1E3ldcVAPc.txt" />
+    <Content Include="App_Data\Small dataset\documents\_2RNV4KUvLU.txt" />
+    <Content Include="App_Data\Small dataset\documents\_2sJls8rnBU.txt" />
+    <Content Include="App_Data\Small dataset\documents\_3XiiNZYpAw.txt" />
+    <Content Include="App_Data\Small dataset\documents\_GR9iLkx33o.txt" />
+    <Content Include="App_Data\Small dataset\documents\_KuFESrNgsQ.txt" />
+    <Content Include="App_Data\Small dataset\documents\_ntIzftXKMM.txt" />
+    <Content Include="App_Data\Small dataset\documents\_Utp93A0yD4.txt" />
+    <Content Include="Content\angular-toastr.min.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-toastr.tpls.min.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\app.config.js" />
+    <Content Include="Scripts\app\app.module.js" />
+    <Content Include="Scripts\app\app.routes.js" />
+    <Content Include="Scripts\app\common\directives\monthSelect.js" />
+    <Content Include="Scripts\app\common\directives\yearSelect.js" />
+    <Content Include="Scripts\app\distribution\distribution.controller.js" />
+    <Content Include="Scripts\app\home\home.controller.js" />
+    <Content Include="Scripts\app\services\general.service.js" />
+    <Content Include="Scripts\app\services\statistics.service.js" />
+    <Content Include="Scripts\dirPagination.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\ng-file-upload.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.14.3.min.js" />
+    <Content Include="Scripts\unicode-base.js" />
+    <Content Include="Scripts\xregexp-min.js" />
+    <Content Include="App_Data\Large dataset\largedataset.csv" />
+    <Content Include="App_Data\Small dataset\PublicationDates.csv" />
+    <Content Include="App_Data\tagsPerVideo.csv" />
+    <Content Include="Views\Distribution\index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\index.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62496</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62496/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

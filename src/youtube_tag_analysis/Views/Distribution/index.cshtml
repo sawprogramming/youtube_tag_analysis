@@ -1,0 +1,114 @@
+﻿@{ Layout = null; }
+<div class="body-content" ng-controller="DistributionCtrl as vm">
+    <div class="row">
+        <div class="page-header">
+            <h3>Tags Per Video Statistics</h3>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Tags Per Video Statistics
+                </div>
+                <div class="panel-body">
+                    <div id="tags_per_video_graph"></div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Statistic</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Average</b></td>
+                            <td ng-bind="vm.TagsPerVideoStats.Average"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Median</b></td>
+                            <td ng-bind="vm.TagsPerVideoStats.Median"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Mode</b></td>
+                            <td ng-bind="vm.TagsPerVideoStats.Mode"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Standard Deviation</b></td>
+                            <td ng-bind="vm.TagsPerVideoStats.Standard_Deviation | number: 2"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Variance</b></td>
+                            <td ng-bind="vm.TagsPerVideoStats.Variance | number: 2"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Quartiles</b></td>
+                            <td ng-bind="vm.TagsPerVideoStats.Quartiles"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly Tags Per Video Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTagsPerVideo_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTagsPerVideo_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_tags_per_video_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Yearly Tags Per Video Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTagsPerVideo_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="yearly_tags_per_video_histogram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header">
+        <h3>Tagless Video Statistics</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly Tagless Video Percentage Chart
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.MonthlyTaglessVideos_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_tagless_videos_chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
