@@ -173,6 +173,77 @@ namespace youtube_tag_analysis.Services
             return (Convert.ToDouble(num_tagless_videos) / num_videos) * 100;
         }
 
+        public List<BarChartModel<int, double>> MonthlyBelowFirstQuartile(int year) {
+            StatisticsModel                  stats = TagsPerVideoStatistics();
+            List<BarChartModel<int, double>> data  = new List<BarChartModel<int, double>>();
+
+            // group videos by month
+            var raw = ImportService.Videos.Where(video => video.Year == year)
+                                          .GroupBy(video => video.Month);
+
+            // count total videos
+            var total_videos_per_month = raw.Select(
+                                            group => new {
+                                                Month     = group.Key,
+                                                NumVideos = group.Count()
+                                            }
+                                        )
+                                        .ToList();
+
+            // count videos with number of tags below the first quartile videos
+            var lower_videos_per_month = raw.Select(
+                                              group => group.Count(
+                                                  video => ImportService.Graph.NumEdges(video.ID) < stats.Quartiles[0]
+                                              )
+                                          )
+                                          .ToList();
+
+            // build the dataset
+            for (int i = 0; i < total_videos_per_month.Count; ++i) {
+                data.Add(new BarChartModel<int, double> {
+                    Key   = total_videos_per_month[i].Month,
+                    Value = (Convert.ToDouble(lower_videos_per_month[i]) / total_videos_per_month[i].NumVideos) * 100
+                });
+            }
+
+            return data.OrderBy(group => group.Key).ToList();
+        }
+
+        public List<BarChartModel<int, double>> YearlyBelowFirstQuartile() {
+            StatisticsModel                  stats = TagsPerVideoStatistics();
+            List<BarChartModel<int, double>> data  = new List<BarChartModel<int, double>>();
+
+            // group videos by year
+            var raw = ImportService.Videos.GroupBy(video => video.Year);
+
+            // count total videos
+            var total_videos_per_year = raw.Select(
+                                            group => new {
+                                                Year      = group.Key,
+                                                NumVideos = group.Count()
+                                            }
+                                        )
+                                        .ToList();
+
+            // count videos with number of tags below the first quartile
+            var lower_videos_per_year = raw.Select(
+                                             group => group.Count(
+                                                 video => ImportService.Graph.NumEdges(video.ID) < stats.Quartiles[0]
+                                             )
+                                         )
+                                         .ToList();
+
+            // build the dataset
+            for (int i = 0; i < total_videos_per_year.Count; ++i) {
+                data.Add(new BarChartModel<int, double> {
+                    Key   = total_videos_per_year[i].Year,
+                    Value = (Convert.ToDouble(lower_videos_per_year[i]) / total_videos_per_year[i].NumVideos) * 100
+                });
+            }
+
+            return data.OrderBy(group => group.Key).ToList();
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private int CalculateMedian(ref List<int> list) {
             int middle = list.Count / 2;

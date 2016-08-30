@@ -192,7 +192,7 @@
     <Compile Include="Classes\graph.cs" />
     <Compile Include="Controllers\API\GeneralController.cs" />
     <Compile Include="Controllers\API\StatisticsController.cs" />
-    <Compile Include="Controllers\View\DistributionController.cs" />
+    <Compile Include="Controllers\View\VideoController.cs" />
     <Compile Include="Controllers\View\EntryController.cs" />
     <Compile Include="Controllers\View\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -769,7 +769,7 @@
     <Content Include="Scripts\app\app.routes.js" />
     <Content Include="Scripts\app\common\directives\monthSelect.js" />
     <Content Include="Scripts\app\common\directives\yearSelect.js" />
-    <Content Include="Scripts\app\distribution\distribution.controller.js" />
+    <Content Include="Scripts\app\video\videoStats.controller.js" />
     <Content Include="Scripts\app\home\home.controller.js" />
     <Content Include="Scripts\app\services\general.service.js" />
     <Content Include="Scripts\app\services\statistics.service.js" />
@@ -782,7 +782,7 @@
     <Content Include="App_Data\Large dataset\largedataset.csv" />
     <Content Include="App_Data\Small dataset\PublicationDates.csv" />
     <Content Include="App_Data\tagsPerVideo.csv" />
-    <Content Include="Views\Distribution\index.cshtml" />
+    <Content Include="Views\Video\index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>

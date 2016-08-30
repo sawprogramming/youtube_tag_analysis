@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace youtube_tag_analysis.Controllers.View
 {
-    public class DistributionController : Controller
+    public class VideoController : Controller
     {
-        [Route("views/Distribution/Index")]
+        [Route("views/Video/Index")]
         public ActionResult Index() {
             return View();
         }

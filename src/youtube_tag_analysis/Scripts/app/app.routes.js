@@ -14,9 +14,9 @@
                 templateUrl: 'views/Home/Index',
                 controller: 'HomeCtrl'
             })
-            .when('/distribution', {
-                templateUrl: 'views/Distribution/Index',
-                controller: 'DistributionCtrl'
+            .when('/videos', {
+                templateUrl: 'views/Video/Index',
+                controller: 'VideoStatsCtrl'
             })
             .otherwise({
                 redirectTo: '/'

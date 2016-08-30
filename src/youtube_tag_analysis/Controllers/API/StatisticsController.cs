@@ -52,5 +52,17 @@ namespace youtube_tag_analysis.Controllers.API
         public HttpResponseMessage TaglessVideoPercentage() {
             return Request.CreateResponse(HttpStatusCode.OK, service_.TaglessVideoPercentage());
         }
+
+        [HttpGet]
+        [Route("api/statistics/graphs/below_first_quartile/{year}")]
+        public HttpResponseMessage MonthlyBelowQuartilePecentages(int year) {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.MonthlyBelowFirstQuartile(year));
+        }
+
+        [HttpGet]
+        [Route("api/statistics/graphs/below_first_quartile")]
+        public HttpResponseMessage YearlyBelowQuartilePecentages() {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.YearlyBelowFirstQuartile());
+        }
     }
 }

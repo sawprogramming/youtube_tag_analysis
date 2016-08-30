@@ -3,13 +3,13 @@
 
     angular
         .module('YTT')
-        .controller('DistributionCtrl', DistributionController);
+        .controller('VideoStatsCtrl', VideoStatsController);
 
-    DistributionController.$inject = ['$scope', 'StatisticsSvc'];
+    VideoStatsController.$inject = ['$scope', 'StatisticsSvc'];
 
-    function DistributionController($scope, StatisticsSvc) {
+    function VideoStatsController($scope, StatisticsSvc) {
         var vm = this;
-        var AreaChartData, YearlyTagsPerVideoHistogram, MonthlyTagsPerVideoHistogram, MonthlyTaglessVideosChart, YearlyTaglessVideosChart;
+        var AreaChartData, YearlyTagsPerVideoHistogram, MonthlyTagsPerVideoHistogram, MonthlyTaglessVideosChart, YearlyTaglessVideosChart, MonthlyQuartileChart, YearlyQuartileChart;
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         // model
@@ -18,6 +18,7 @@
         vm.YearlyTagsPerVideo_Year   = null;
         vm.MonthlyTaglessVideos_Year = null;
         vm.TaglessVideoPercentage    = null;
+        vm.MonthlyQuartile_Year      = null;
 
         initialize();
 
@@ -26,6 +27,7 @@
             FetchAreaChartData();
             FetchYearlyTaglessVideoData();
             FetchTaglessVideoPercentage();
+            FetchYearlyQuartileData();
         }
 
         function FetchAreaChartData() {
@@ -222,6 +224,73 @@
             );
         }
 
+        function FetchMonthlyQuartileData(year) {
+            StatisticsSvc.GetMonthlyQuartilePercentages(year).then(
+                function success(response) {
+                    // setup the chart
+                    MonthlyQuartileChart = new google.visualization.DataTable();
+                    MonthlyQuartileChart.addColumn('string', 'Month');
+                    MonthlyQuartileChart.addColumn('number', 'Percentage of Videos below First Quartile');
+
+                    // fill the chart with data
+                    angular.forEach(response.data, function (value, key) {
+                        var rowData = new Array(2);
+                        rowData[0] = months[value.Key - 1];
+                        rowData[1] = value.Value;
+                        MonthlyQuartileChart.addRow(rowData);
+                    });
+
+                    // draw the chart
+                    DrawMonthlyQuartileChart();
+                }
+            );
+        }
+
+        function DrawMonthlyQuartileChart() {
+            var options = {
+                legend: {
+                    position: 'none'
+                },
+                theme: 'maximized'
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('monthly_quartile_chart'));
+            chart.draw(MonthlyQuartileChart, options);
+        }
+
+        function FetchYearlyQuartileData() {
+            StatisticsSvc.GetYearlyQuartilePercentages().then(
+                function success(response) {
+                    // setup the chart
+                    YearlyQuartileChart = new google.visualization.DataTable();
+                    YearlyQuartileChart.addColumn('string', 'Year');
+                    YearlyQuartileChart.addColumn('number', 'Percentage of Videos below First Quartile');
+
+                    // fill the chart with data
+                    angular.forEach(response.data, function (value, key) {
+                        var rowData = new Array(2);
+                        rowData[0] = value.Key.toString();
+                        rowData[1] = value.Value;
+                        YearlyQuartileChart.addRow(rowData);
+                    });
+
+                    // draw the chart
+                    DrawYearlyQuartileChart();
+                }
+            );
+        }
+
+        function DrawYearlyQuartileChart() {
+            var options = {
+                legend: {
+                    position: 'none'
+                },
+                theme: 'maximized'
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('yearly_quartile_chart'));
+            chart.draw(YearlyQuartileChart, options);
+        }
 
         // ng-change isn't working so we're dealing with it this way
         $scope.$watch("vm.YearlyTagsPerVideo_Year", function dosomething(current, previous) {
@@ -242,6 +311,11 @@
         $scope.$watch("vm.MonthlyTaglessVideos_Year", function dosomething(current, previous) {
             if (current != previous) {
                 FetchMonthlyTaglessVideoData(current);
+            }
+        });
+        $scope.$watch("vm.MonthlyQuartile_Year", function dosomething(current, previous) {
+            if (current != previous) {
+                FetchMonthlyQuartileData(current);
             }
         });
     }
