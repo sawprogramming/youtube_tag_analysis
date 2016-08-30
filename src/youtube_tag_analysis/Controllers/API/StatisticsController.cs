@@ -43,6 +43,7 @@ namespace youtube_tag_analysis.Controllers.API
 
         [HttpGet]
         [Route("api/statistics/graphs/tagless")]
+        public HttpResponseMessage YearlyTaglessVideos() {
             return Request.CreateResponse(HttpStatusCode.OK, service_.YearlyTaglessVideos());
         }
     }
