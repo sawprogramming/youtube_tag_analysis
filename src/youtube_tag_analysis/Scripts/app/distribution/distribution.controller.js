@@ -9,7 +9,7 @@
 
     function DistributionController($scope, StatisticsSvc) {
         var vm = this;
-        var AreaChartData, YearlyTagsPerVideoHistogram, MonthlyTagsPerVideoHistogram, MonthlyTaglessVideosChart;
+        var AreaChartData, YearlyTagsPerVideoHistogram, MonthlyTagsPerVideoHistogram, MonthlyTaglessVideosChart, YearlyTaglessVideosChart;
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         // model
@@ -23,6 +23,7 @@
         ///////////////////////////////////////////////////////////////////////////
         function initialize() {
             FetchAreaChartData();
+            FetchYearlyTaglessVideoData();
         }
 
         function FetchAreaChartData() {
@@ -175,6 +176,40 @@
 
             var chart = new google.visualization.ColumnChart(document.getElementById('monthly_tagless_videos_chart'));
             chart.draw(MonthlyTaglessVideosChart, options);
+        }
+
+        function FetchYearlyTaglessVideoData() {
+            StatisticsSvc.GetYearlyTaglessVideos().then(
+                function success(response) {
+                    // setup the chart
+                    YearlyTaglessVideosChart = new google.visualization.DataTable();
+                    YearlyTaglessVideosChart.addColumn('string', 'Year');
+                    YearlyTaglessVideosChart.addColumn('number', 'Percentage of Tagless Videos');
+
+                    // fill the chart with data
+                    angular.forEach(response.data, function (value, key) {
+                        var rowData = new Array(2);
+                        rowData[0] = value.Key.toString();
+                        rowData[1] = value.Value;
+                        YearlyTaglessVideosChart.addRow(rowData);
+                    });
+
+                    // draw the chart
+                    DrawYearlyTaglessChart();
+                }
+            );
+        }
+
+        function DrawYearlyTaglessChart() {
+            var options = {
+                legend: {
+                    position: 'none'
+                },
+                theme: 'maximized'
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('yearly_tagless_videos_chart'));
+            chart.draw(YearlyTaglessVideosChart, options);
         }
 
         // ng-change isn't working so we're dealing with it this way

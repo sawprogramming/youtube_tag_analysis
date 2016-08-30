@@ -79,13 +79,13 @@ namespace youtube_tag_analysis.Services
 
             // collect data
             var raw = ImportService.Videos.Where(video => video.Year == year && video.Month == month)
-                                           .Select(
-                                               video => new {
-                                                  ID      = video.ID,
-                                                  NumTags = ImportService.Graph.NumEdges(video.ID)
-                                               }
-                                            )
-                                           .ToList();
+                                          .Select(
+                                              video => new {
+                                                 ID      = video.ID,
+                                                 NumTags = ImportService.Graph.NumEdges(video.ID)
+                                              }
+                                           )
+                                          .ToList();
 
             // turn data into a list of our model
             foreach (var pair in raw) {
@@ -125,8 +125,42 @@ namespace youtube_tag_analysis.Services
             // build the dataset
             for (int i = 0; i < total_videos_per_month.Count; ++i) {
                 data.Add(new BarChartModel<int, double> {
-                    Key = total_videos_per_month[i].Month,
+                    Key   = total_videos_per_month[i].Month,
                     Value = (Convert.ToDouble(tagless_videos_per_month[i]) / total_videos_per_month[i].NumVideos) * 100
+                });
+            }
+
+            return data.OrderBy(group => group.Key).ToList();
+        }
+
+        public List<BarChartModel<int, double>> YearlyTaglessVideos() {
+            List<BarChartModel<int, double>> data = new List<BarChartModel<int, double>>();
+
+            // group videos by year
+            var raw = ImportService.Videos.GroupBy(video => video.Year);
+
+            // count total videos
+            var total_videos_per_year = raw.Select(
+                                            group => new {
+                                                Year      = group.Key,
+                                                NumVideos = group.Count()
+                                            }
+                                        )
+                                        .ToList();
+
+            // count tagless videos
+            var tagless_videos_per_year = raw.Select(
+                                                group => group.Count(
+                                                    video => ImportService.Graph.NumEdges(video.ID) == 0
+                                                )
+                                          )
+                                          .ToList();
+
+            // build the dataset
+            for (int i = 0; i < total_videos_per_year.Count; ++i) {
+                data.Add(new BarChartModel<int,double> {
+                    Key   = total_videos_per_year[i].Year,
+                    Value = (Convert.ToDouble(tagless_videos_per_year[i]) / total_videos_per_year[i].NumVideos) * 100
                 });
             }
 

@@ -5,8 +5,7 @@ using System.Web;
 
 namespace youtube_tag_analysis.Classes
 {
-    public class graph<T>
-    {
+    public class graph<T> {
         public bool HasVertex(T value) {
             return vertices_.ContainsKey(value);
         }
@@ -35,7 +34,7 @@ namespace youtube_tag_analysis.Classes
             adjacency_list_.Clear();
         }
 
-        private Dictionary<T, int> vertices_ = new Dictionary<T, int>();
+        private Dictionary<T, int> vertices_       = new Dictionary<T, int>();
         private List<List<T>>      adjacency_list_ = new List<List<T>>();
     }
 }

@@ -13,7 +13,8 @@
             GetTagsPerVideoGraph    : GetTagsPerVideoGraph,
             GetYearlyTagsPerVideo   : GetYearlyTagsPerVideo,
             GetMonthlyTagsPerVideo  : GetMonthlyTagsPerVideo,
-            GetMonthlyTaglessVideos : GetMonthlyTaglessVideos
+            GetMonthlyTaglessVideos : GetMonthlyTaglessVideos,
+            GetYearlyTaglessVideos  : GetYearlyTaglessVideos
         };
         return service;
 
@@ -50,6 +51,13 @@
             return $http({
                 method : 'GET',
                 url    : 'api/statistics/graphs/tagless/' + year
+            });
+        }
+
+        function GetYearlyTaglessVideos() {
+            return $http({
+                method: 'GET',
+                url: 'api/statistics/graphs/tagless'
             });
         }
     }
