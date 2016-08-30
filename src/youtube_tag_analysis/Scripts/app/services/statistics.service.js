@@ -9,12 +9,13 @@
 
     function StatisticsService($http) {
         var service = {
-            GetTagsPerVideo         : GetTagsPerVideo,
-            GetTagsPerVideoGraph    : GetTagsPerVideoGraph,
-            GetYearlyTagsPerVideo   : GetYearlyTagsPerVideo,
-            GetMonthlyTagsPerVideo  : GetMonthlyTagsPerVideo,
-            GetMonthlyTaglessVideos : GetMonthlyTaglessVideos,
-            GetYearlyTaglessVideos  : GetYearlyTaglessVideos
+            GetTagsPerVideo           : GetTagsPerVideo,
+            GetTagsPerVideoGraph      : GetTagsPerVideoGraph,
+            GetYearlyTagsPerVideo     : GetYearlyTagsPerVideo,
+            GetMonthlyTagsPerVideo    : GetMonthlyTagsPerVideo,
+            GetMonthlyTaglessVideos   : GetMonthlyTaglessVideos,
+            GetYearlyTaglessVideos    : GetYearlyTaglessVideos,
+            GetTaglessVideoPercentage : GetTaglessVideoPercentage
         };
         return service;
 
@@ -58,6 +59,13 @@
             return $http({
                 method: 'GET',
                 url: 'api/statistics/graphs/tagless'
+            });
+        }
+
+        function GetTaglessVideoPercentage() {
+            return $http({
+                method: 'GET',
+                url: 'api/statistics/tagless'
             });
         }
     }

@@ -17,6 +17,7 @@
         vm.MonthlyTagsPerVideoo_Year = null;
         vm.YearlyTagsPerVideo_Year   = null;
         vm.MonthlyTaglessVideos_Year = null;
+        vm.TaglessVideoPercentage    = null;
 
         initialize();
 
@@ -24,6 +25,7 @@
         function initialize() {
             FetchAreaChartData();
             FetchYearlyTaglessVideoData();
+            FetchTaglessVideoPercentage();
         }
 
         function FetchAreaChartData() {
@@ -211,6 +213,15 @@
             var chart = new google.visualization.ColumnChart(document.getElementById('yearly_tagless_videos_chart'));
             chart.draw(YearlyTaglessVideosChart, options);
         }
+
+        function FetchTaglessVideoPercentage() {
+            StatisticsSvc.GetTaglessVideoPercentage().then(
+                function success(response) {
+                    vm.TaglessVideoPercentage = response.data;
+                }
+            );
+        }
+
 
         // ng-change isn't working so we're dealing with it this way
         $scope.$watch("vm.YearlyTagsPerVideo_Year", function dosomething(current, previous) {

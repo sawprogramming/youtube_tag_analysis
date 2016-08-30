@@ -46,5 +46,11 @@ namespace youtube_tag_analysis.Controllers.API
         public HttpResponseMessage YearlyTaglessVideos() {
             return Request.CreateResponse(HttpStatusCode.OK, service_.YearlyTaglessVideos());
         }
+
+        [HttpGet]
+        [Route("api/statistics/tagless")]
+        public HttpResponseMessage TaglessVideoPercentage() {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.TaglessVideoPercentage());
+        }
     }
 }

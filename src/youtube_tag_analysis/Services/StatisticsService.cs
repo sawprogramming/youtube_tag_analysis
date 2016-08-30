@@ -167,6 +167,12 @@ namespace youtube_tag_analysis.Services
             return data.OrderBy(group => group.Key).ToList();
         }
 
+        public double TaglessVideoPercentage() {
+            int num_videos         = ImportService.Videos.Count;
+            int num_tagless_videos = ImportService.Videos.Count(video => ImportService.Graph.NumEdges(video.ID) == 0);
+            return (Convert.ToDouble(num_tagless_videos) / num_videos) * 100;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private int CalculateMedian(ref List<int> list) {
             int middle = list.Count / 2;
