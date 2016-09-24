@@ -11,8 +11,8 @@ namespace youtube_tag_analysis.Services
             List<int> tagsPerVideo = new List<int>();
 
             // populate the tags per video from the data (then sort the data)
-            foreach (VideoModel video in ImportService.Videos) {
-                tagsPerVideo.Add(ImportService.Graph.NumEdges(video.ID));
+            foreach (var video in ImportService.Videos) {
+                tagsPerVideo.Add(ImportService.Graph.NumEdges(video.Value.ID));
             }
             tagsPerVideo.Sort();
             
@@ -32,8 +32,8 @@ namespace youtube_tag_analysis.Services
             List<double> frequencyTags = new List<double>();
 
             // populate the tags per video from the data (then sort the data)
-            foreach (VideoModel video in ImportService.Videos) {
-                tagsPerVideo.Add(ImportService.Graph.NumEdges(video.ID));
+            foreach (var video in ImportService.Videos) {
+                tagsPerVideo.Add(ImportService.Graph.NumEdges(video.Value.ID));
             }
             tagsPerVideo.Sort();
 
@@ -54,11 +54,11 @@ namespace youtube_tag_analysis.Services
             List<TagsPerVideoModel> data = new List<TagsPerVideoModel>();
 
             // collect data
-            var raw = ImportService.Videos.Where(video => video.Year == year)
+            var raw = ImportService.Videos.Where(video => video.Value.Year == year)
                                            .Select(
                                                video => new {
-                                                  ID      = video.ID,
-                                                  NumTags = ImportService.Graph.NumEdges(video.ID)
+                                                  ID      = video.Value.ID,
+                                                  NumTags = ImportService.Graph.NumEdges(video.Value.ID)
                                                }
                                             )
                                            .ToList();
@@ -78,11 +78,11 @@ namespace youtube_tag_analysis.Services
             List<TagsPerVideoModel> data = new List<TagsPerVideoModel>();
 
             // collect data
-            var raw = ImportService.Videos.Where(video => video.Year == year && video.Month == month)
+            var raw = ImportService.Videos.Where(video => video.Value.Year == year && video.Value.Month == month)
                                           .Select(
                                               video => new {
-                                                 ID      = video.ID,
-                                                 NumTags = ImportService.Graph.NumEdges(video.ID)
+                                                 ID      = video.Value.ID,
+                                                 NumTags = ImportService.Graph.NumEdges(video.Value.ID)
                                               }
                                            )
                                           .ToList();
@@ -102,8 +102,8 @@ namespace youtube_tag_analysis.Services
             List<BarChartModel<int, double>> data = new List<BarChartModel<int, double>>();
 
             // group videos by month
-            var raw = ImportService.Videos.Where(video => video.Year == year)
-                                          .GroupBy(video => video.Month);
+            var raw = ImportService.Videos.Where(video => video.Value.Year == year)
+                                          .GroupBy(video => video.Value.Month);
 
             // count total videos
             var total_videos_per_month = raw.Select(
@@ -117,7 +117,7 @@ namespace youtube_tag_analysis.Services
             // count tagless videos
             var tagless_videos_per_month = raw.Select(
                                               group => group.Count(
-                                                  video => ImportService.Graph.NumEdges(video.ID) == 0
+                                                  video => ImportService.Graph.NumEdges(video.Value.ID) == 0
                                               )
                                           )
                                           .ToList();
@@ -137,7 +137,7 @@ namespace youtube_tag_analysis.Services
             List<BarChartModel<int, double>> data = new List<BarChartModel<int, double>>();
 
             // group videos by year
-            var raw = ImportService.Videos.GroupBy(video => video.Year);
+            var raw = ImportService.Videos.GroupBy(video => video.Value.Year);
 
             // count total videos
             var total_videos_per_year = raw.Select(
@@ -151,7 +151,7 @@ namespace youtube_tag_analysis.Services
             // count tagless videos
             var tagless_videos_per_year = raw.Select(
                                                 group => group.Count(
-                                                    video => ImportService.Graph.NumEdges(video.ID) == 0
+                                                    video => ImportService.Graph.NumEdges(video.Value.ID) == 0
                                                 )
                                           )
                                           .ToList();
@@ -169,7 +169,7 @@ namespace youtube_tag_analysis.Services
 
         public double TaglessVideoPercentage() {
             int num_videos         = ImportService.Videos.Count;
-            int num_tagless_videos = ImportService.Videos.Count(video => ImportService.Graph.NumEdges(video.ID) == 0);
+            int num_tagless_videos = ImportService.Videos.Count(video => ImportService.Graph.NumEdges(video.Value.ID) == 0);
             return (Convert.ToDouble(num_tagless_videos) / num_videos) * 100;
         }
 
@@ -178,8 +178,8 @@ namespace youtube_tag_analysis.Services
             List<BarChartModel<int, double>> data  = new List<BarChartModel<int, double>>();
 
             // group videos by month
-            var raw = ImportService.Videos.Where(video => video.Year == year)
-                                          .GroupBy(video => video.Month);
+            var raw = ImportService.Videos.Where(video => video.Value.Year == year)
+                                          .GroupBy(video => video.Value.Month);
 
             // count total videos
             var total_videos_per_month = raw.Select(
@@ -193,7 +193,7 @@ namespace youtube_tag_analysis.Services
             // count videos with number of tags below the first quartile videos
             var lower_videos_per_month = raw.Select(
                                               group => group.Count(
-                                                  video => ImportService.Graph.NumEdges(video.ID) < stats.Quartiles[0]
+                                                  video => ImportService.Graph.NumEdges(video.Value.ID) < stats.Quartiles[0]
                                               )
                                           )
                                           .ToList();
@@ -214,7 +214,7 @@ namespace youtube_tag_analysis.Services
             List<BarChartModel<int, double>> data  = new List<BarChartModel<int, double>>();
 
             // group videos by year
-            var raw = ImportService.Videos.GroupBy(video => video.Year);
+            var raw = ImportService.Videos.GroupBy(video => video.Value.Year);
 
             // count total videos
             var total_videos_per_year = raw.Select(
@@ -228,7 +228,7 @@ namespace youtube_tag_analysis.Services
             // count videos with number of tags below the first quartile
             var lower_videos_per_year = raw.Select(
                                              group => group.Count(
-                                                 video => ImportService.Graph.NumEdges(video.ID) < stats.Quartiles[0]
+                                                 video => ImportService.Graph.NumEdges(video.Value.ID) < stats.Quartiles[0]
                                              )
                                          )
                                          .ToList();

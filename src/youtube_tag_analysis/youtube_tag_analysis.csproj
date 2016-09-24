@@ -192,6 +192,8 @@
     <Compile Include="Classes\graph.cs" />
     <Compile Include="Controllers\API\GeneralController.cs" />
     <Compile Include="Controllers\API\StatisticsController.cs" />
+    <Compile Include="Controllers\API\TagController.cs" />
+    <Compile Include="Controllers\View\TagController.cs" />
     <Compile Include="Controllers\View\VideoController.cs" />
     <Compile Include="Controllers\View\EntryController.cs" />
     <Compile Include="Controllers\View\HomeController.cs" />
@@ -200,12 +202,14 @@
     </Compile>
     <Compile Include="Models\BarChartModel.cs" />
     <Compile Include="Models\StatisticsModel.cs" />
+    <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TagsPerVideoModel.cs" />
     <Compile Include="Models\VideoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GeneralService.cs" />
     <Compile Include="Services\ImportService.cs" />
     <Compile Include="Services\StatisticsService.cs" />
+    <Compile Include="Services\TagService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -767,8 +771,11 @@
     <Content Include="Scripts\app\app.config.js" />
     <Content Include="Scripts\app\app.module.js" />
     <Content Include="Scripts\app\app.routes.js" />
+    <Content Include="Scripts\app\common\directives\dirPagination.tpl.html" />
     <Content Include="Scripts\app\common\directives\monthSelect.js" />
     <Content Include="Scripts\app\common\directives\yearSelect.js" />
+    <Content Include="Scripts\app\services\tag.service.js" />
+    <Content Include="Scripts\app\tag\tag.controller.js" />
     <Content Include="Scripts\app\video\videoStats.controller.js" />
     <Content Include="Scripts\app\home\home.controller.js" />
     <Content Include="Scripts\app\services\general.service.js" />
@@ -797,6 +804,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\index.cshtml" />
+    <Content Include="Views\Tag\index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

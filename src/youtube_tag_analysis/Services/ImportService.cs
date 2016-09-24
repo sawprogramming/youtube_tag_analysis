@@ -11,9 +11,9 @@ namespace youtube_tag_analysis.Services
 {
     public class ImportService
     {
-        public static graph<string>    Graph  { get; private set; }
-        public static HashSet<string>  Tags   { get; private set; }
-        public static List<VideoModel> Videos { get; private set; }
+        public static graph<string>    Graph                { get; private set; }
+        public static HashSet<string>  Tags                 { get; private set; }
+        public static Dictionary<string, VideoModel> Videos { get; private set; }
 
         /// <summary>
         /// Initializes the data structures that store the imported data.
@@ -24,7 +24,7 @@ namespace youtube_tag_analysis.Services
         public ImportService() {
             Graph  = new graph<string>();
             Tags   = new HashSet<string>();
-            Videos = new List<VideoModel>();
+            Videos = new Dictionary<string, VideoModel>();
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace youtube_tag_analysis.Services
                     string[] fields = parser.ReadFields();
 
                     // add the video to the list of videos
-                    Videos.Add(new VideoModel {
+                    Videos.Add(fields[0], new VideoModel {
                          ID          = fields[0],
                          Title       = fields[1],
                          Description = fields[2],

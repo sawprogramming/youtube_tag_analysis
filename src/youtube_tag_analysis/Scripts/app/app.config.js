@@ -5,7 +5,8 @@
         .module('YTT')
         .config(configureDatepicker)
         .config(configureDatepickerPopup)
-        .config(configureTimepicker);
+        .config(configureTimepicker)
+        .config(configurePagination);
  
     ///////////////////////////////////////////////////////////////////////////
     function configureDatepicker(uibDatepickerConfig) {
@@ -19,5 +20,9 @@
     function configureTimepicker(uibTimepickerConfig) {
         uibTimepickerConfig.showSpinners = false;
         uibTimepickerConfig.minuteStep = 15;
+    }
+
+    function configurePagination(paginationTemplateProvider) {
+        paginationTemplateProvider.setPath('scripts/app/common/directives/dirPagination.tpl.html');
     }
 })();

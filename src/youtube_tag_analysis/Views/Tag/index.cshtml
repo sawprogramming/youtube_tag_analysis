@@ -1,0 +1,150 @@
+﻿@{ Layout = null; }
+<div class="body-content" ng-controller="TagCtrl as vm">
+    <div class="page-header">
+        <h3>Tags</h3>
+    </div>
+    <div class="panel panel-garnet">
+        <div class="panel-heading clearfix">
+            <div class="row row-eq-height">
+                <div class="col-md-8">
+                    <p class="form-control-static">Tag Dump</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group has-feedback" style="padding: 0; margin: 0">
+                        <input type="text" ng-model="q" class="form-control" placeholder="Search" />
+                        <span class="glyphicon glyphicon-search form-control-feedback" style="color: black"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        <span ng-click="vm.sortType = 'Tag'; vm.sortReverse = !vm.sortReverse">
+                            Tag
+                            <span ng-show="vm.sortType == 'Tag' && !vm.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                            <span ng-show="vm.sortType == 'Tag' && vm.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                        </span>
+                    </th>
+                    <th>
+                        <span ng-click="vm.sortType = 'NumVideos'; vm.sortReverse = !vm.sortReverse">
+                            # Videos
+                            <span ng-show="vm.sortType == 'NumVideos' && !vm.sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                            <span ng-show="vm.sortType == 'NumVideos' && vm.sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="tag in vm.Tags | filter:q | orderBy:vm.sortType:vm.sortReverse | itemsPerPage: 15" pagination-id="tag_dump">
+                    <td ng-bind="tag.Tag"></td>
+                    <td ng-bind="tag.NumVideos"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="panel-footer clearfix">
+            <dir-pagination-controls pagination-id="tag_dump"></dir-pagination-controls>
+        </div>
+    </div>
+    <div class="page-header">
+        <h3>Top 10 Tag Statistics</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-garnet">
+                <div class="panel-heading clearfix">
+                    <div class="row row-eq-height">
+                        <div class="col-md-8">
+                            <p class="form-control-static">Monthly Top Tags</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback" style="padding: 0; margin: 0">
+                                <input type="text" ng-model="monthly_search" class="form-control" placeholder="Search" />
+                                <span class="glyphicon glyphicon-search form-control-feedback" style="color: black"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTop10_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTop10_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Tag</th>
+                            <th># Videos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="tag in vm.MonthlyTop10 | filter: monthly_search | itemsPerPage: 10" pagination-id="monthly_top">
+                            <td><b><span ng-bind="tag.Rank"></span></b></td>
+                            <td ng-bind="tag.Tag"></td>
+                            <td ng-bind="tag.NumVideos"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-footer clearfix">
+                    <dir-pagination-controls pagination-id="monthly_top" max-size="5"></dir-pagination-controls>
+                </div>
+            </div> 
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-garnet">
+                <div class="panel-heading clearfix">
+                    <div class="row row-eq-height">
+                        <div class="col-md-8">
+                            <p class="form-control-static">Yearly Top Tags</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback" style="padding: 0; margin: 0">
+                                <input type="text" ng-model="yearly_search" class="form-control" placeholder="Search" />
+                                <span class="glyphicon glyphicon-search form-control-feedback" style="color: black"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTop10_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Tag</th>
+                            <th># Videos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="tag in vm.YearlyTop10 | filter: yearly_search | itemsPerPage: 10" pagination-id="yearly_top">
+                            <td><b><span ng-bind="tag.Rank"></span></b></td>
+                            <td ng-bind="tag.Tag"></td>
+                            <td ng-bind="tag.NumVideos"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-footer clearfix">
+                    <dir-pagination-controls pagination-id="yearly_top" max-size="5"></dir-pagination-controls>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

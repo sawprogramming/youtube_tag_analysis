@@ -7,7 +7,7 @@ namespace youtube_tag_analysis.Services
 {
     public class GeneralService {
         public int[] GetYears() {
-            return ImportService.Videos.GroupBy(video => video.Year)
+            return ImportService.Videos.GroupBy(video => video.Value.Year)
                                        .Select(group => group.Key)
                                        .ToArray();
         }

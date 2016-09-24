@@ -18,6 +18,10 @@
                 templateUrl: 'views/Video/Index',
                 controller: 'VideoStatsCtrl'
             })
+            .when('/tags', {
+                templateUrl: 'views/Tags/Index',
+                controller: 'TagCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
