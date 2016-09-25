@@ -24,45 +24,27 @@ namespace youtube_tag_analysis.Controllers.API
         }
 
         [HttpGet]
-        [Route("api/statistics/histograms/tags_per_video/yearly/{year}")]
-        public HttpResponseMessage TagsPerVideoyearlyHistogram(int year) {
-            return Request.CreateResponse(HttpStatusCode.OK, service_.YearlyTagsPerVideo(year));
-        }
-
-        [HttpGet]
-        [Route("api/statistics/histograms/tags_per_video/monthly/{year}/{month}")]
-        public HttpResponseMessage TagsPerVideoyearlyHistogram(int year, int month) {
-            return Request.CreateResponse(HttpStatusCode.OK, service_.MonthlyTagsPerVideo(year, month));
-        }
-
-        [HttpGet]
-        [Route("api/statistics/graphs/tagless/{year}")]
-        public HttpResponseMessage MonthlyTaglessVideos(int year) {
-            return Request.CreateResponse(HttpStatusCode.OK, service_.MonthlyTaglessVideos(year));
-        }
-
-        [HttpGet]
-        [Route("api/statistics/graphs/tagless")]
-        public HttpResponseMessage YearlyTaglessVideos() {
-            return Request.CreateResponse(HttpStatusCode.OK, service_.YearlyTaglessVideos());
-        }
-
-        [HttpGet]
-        [Route("api/statistics/tagless")]
-        public HttpResponseMessage TaglessVideoPercentage() {
-            return Request.CreateResponse(HttpStatusCode.OK, service_.TaglessVideoPercentage());
-        }
-
-        [HttpGet]
-        [Route("api/statistics/graphs/below_first_quartile/{year}")]
+        [Route("api/statistics/graphs/vids_below_first_quartile/{year}")]
         public HttpResponseMessage MonthlyBelowQuartilePecentages(int year) {
             return Request.CreateResponse(HttpStatusCode.OK, service_.MonthlyBelowFirstQuartile(year));
         }
 
         [HttpGet]
-        [Route("api/statistics/graphs/below_first_quartile")]
+        [Route("api/statistics/graphs/vids_below_first_quartile")]
         public HttpResponseMessage YearlyBelowQuartilePecentages() {
             return Request.CreateResponse(HttpStatusCode.OK, service_.YearlyBelowFirstQuartile());
+        }
+
+        [HttpGet]
+        [Route("api/statistics/tag_length")]
+        public HttpResponseMessage TagLengthStatistics() {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetTagLengthStatistics());
+        }
+
+        [HttpGet]
+        [Route("api/statistics/graphs/tag_length")]
+        public HttpResponseMessage TagLengthAreaChart() {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.TagLengthAreaChart());
         }
     }
 }

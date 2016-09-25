@@ -5,7 +5,7 @@ using System.Web;
 
 namespace youtube_tag_analysis.Models
 {
-    public class TagModel {
+    public class TagCountModel {
         public string       Tag       { get; set; }
         public int          NumVideos { get; set; }
     }

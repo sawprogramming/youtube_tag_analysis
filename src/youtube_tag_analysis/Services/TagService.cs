@@ -7,9 +7,9 @@ using youtube_tag_analysis.Models;
 namespace youtube_tag_analysis.Services
 {
     public class TagService {
-        public List<TagModel> GetAllTags() {
+        public List<TagCountModel> GetTagCounts() {
             return ImportService.Tags.Select(
-                                          tag => new TagModel {
+                                          tag => new TagCountModel {
                                               Tag       = tag,
                                               NumVideos = ImportService.Graph.NumEdges(tag),
                                           }
@@ -18,7 +18,7 @@ namespace youtube_tag_analysis.Services
                                       .ToList(); 
         }
 
-        public List<TagModel> GetTop10(int month, int year) {
+        public List<TagCountModel> GetTop(int year, int month) {
             Dictionary<string, int> tagCounts = new Dictionary<string, int>();
             var videos = ImportService.Videos.Where(dict => dict.Value.Year == year && dict.Value.Month == month)
                                              .Select(dict => dict.Value);
@@ -33,17 +33,16 @@ namespace youtube_tag_analysis.Services
 
             // return the top 10
             return tagCounts.Select(
-                                dict => new TagModel() {
-                                    Tag = dict.Key,
+                                dict => new TagCountModel() {
+                                    Tag       = dict.Key,
                                     NumVideos = dict.Value
                                 }
                             )
                             .OrderByDescending(tag => tag.NumVideos)
-                          //  .Take(10)
                             .ToList();
         }
 
-        public List<TagModel> GetTop10(int year) {
+        public List<TagCountModel> GetTop(int year) {
             Dictionary<string, int> tagCounts = new Dictionary<string, int>();
             var videos                        = ImportService.Videos.Where(dict => dict.Value.Year == year)
                                                                     .Select(dict => dict.Value);
@@ -58,14 +57,47 @@ namespace youtube_tag_analysis.Services
 
             // return the top 10
             return tagCounts.Select(
-                                dict => new TagModel() {
-                                    Tag = dict.Key,
+                                dict => new TagCountModel() {
+                                    Tag       = dict.Key,
                                     NumVideos = dict.Value
                                 }
                             )
                             .OrderByDescending(tag => tag.NumVideos)
-                           // .Take(10)
                             .ToList();
+        }
+
+        public List<string> GetMonthlyTags(int year, int month) {
+            HashSet<string> usedTags = new HashSet<string>();
+
+            // get videos from that month/year
+            var videos = ImportService.Videos.Where(dict => dict.Value.Year == year && dict.Value.Month == month)
+                                             .Select(dict => dict.Value);
+
+            // get tags from those videos
+            foreach(var video in videos) {
+                foreach(var tag in ImportService.Graph.GetEdges(video.ID)) {
+                    usedTags.Add(tag);
+                }
+            }
+
+            return usedTags.ToList();
+        }
+
+        public List<string> GetYearlyTags(int year) {
+            HashSet<string> usedTags = new HashSet<string>();
+
+            // get videos from that month/year
+            var videos = ImportService.Videos.Where(dict => dict.Value.Year == year)
+                                             .Select(dict => dict.Value);
+
+            // get tags from those videos
+            foreach(var video in videos) {
+                foreach(var tag in ImportService.Graph.GetEdges(video.ID)) {
+                    usedTags.Add(tag);
+                }
+            }
+
+            return usedTags.ToList();
         }
     }
 }

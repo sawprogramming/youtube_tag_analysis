@@ -5,9 +5,9 @@
         .module('YTT')
         .controller('VideoStatsCtrl', VideoStatsController);
 
-    VideoStatsController.$inject = ['$scope', 'StatisticsSvc'];
+    VideoStatsController.$inject = ['$scope', 'StatisticsSvc', 'VideoSvc'];
 
-    function VideoStatsController($scope, StatisticsSvc) {
+    function VideoStatsController($scope, StatisticsSvc, VideoSvc) {
         var vm = this;
         var AreaChartData, YearlyTagsPerVideoHistogram, MonthlyTagsPerVideoHistogram, MonthlyTaglessVideosChart, YearlyTaglessVideosChart, MonthlyQuartileChart, YearlyQuartileChart;
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -45,7 +45,7 @@
                             AreaChartData.addColumn('number', 'Frequency');
                             AreaChartData.addColumn({ type: 'string', role: 'annotation' });
                             for (var i = 0; i < response.data.length; ++i) {
-                                chartData[i] = new Array(3);
+                                chartData[i]    = new Array(3);
                                 chartData[i][0] = i;
                                 chartData[i][1] = response.data[i];
                             }
@@ -81,7 +81,7 @@
         }
 
         function FetchYearlyHistogramData(year) {
-            StatisticsSvc.GetYearlyTagsPerVideo(year).then(
+            VideoSvc.GetYearlyTagsPerVideo(year).then(
                 function success(response) {
                     // setup the chart
                     YearlyTagsPerVideoHistogram = new google.visualization.DataTable();
@@ -115,7 +115,7 @@
         }
 
         function FetchMonthlyHistogramData(year, month) {
-            StatisticsSvc.GetMonthlyTagsPerVideo(year, month).then(
+            VideoSvc.GetMonthlyTagsPerVideo(year, month).then(
                 function success(response) {
                     // setup the chart
                     MonthlyTagsPerVideoHistogram = new google.visualization.DataTable();
@@ -149,7 +149,7 @@
         }
 
         function FetchMonthlyTaglessVideoData(year) {
-            StatisticsSvc.GetMonthlyTaglessVideos(year).then(
+            VideoSvc.GetMonthlyTaglessVideos(year).then(
                 function success(response) {
                     // setup the chart
                     MonthlyTaglessVideosChart = new google.visualization.DataTable();
@@ -183,7 +183,7 @@
         }
 
         function FetchYearlyTaglessVideoData() {
-            StatisticsSvc.GetYearlyTaglessVideos().then(
+            VideoSvc.GetYearlyTaglessVideos().then(
                 function success(response) {
                     // setup the chart
                     YearlyTaglessVideosChart = new google.visualization.DataTable();
@@ -217,7 +217,7 @@
         }
 
         function FetchTaglessVideoPercentage() {
-            StatisticsSvc.GetTaglessVideoPercentage().then(
+            VideoSvc.GetTaglessVideoPercentage().then(
                 function success(response) {
                     vm.TaglessVideoPercentage = response.data;
                 }

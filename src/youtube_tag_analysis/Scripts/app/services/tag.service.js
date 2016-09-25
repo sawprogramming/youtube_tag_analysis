@@ -9,31 +9,47 @@
 
     function TagService($http) {
         var service = {
-            GetTags         : GetTags,
-            GetMonthlyTop10 : GetMonthlyTop10,
-            GetYearlyTop10  : GetYearlyTop10
+            GetTagCounts   : GetTagCounts,
+            GetMonthlyTop  : GetMonthlyTop,
+            GetYearlyTop   : GetYearlyTop,
+            GetMonthlyTags : GetMonthlyTags,
+            GetYearlyTags  : GetYearlyTags
         };
         return service;
 
         ///////////////////////////////////////////////////////////////////////////
-        function GetTags() {
+        function GetTagCounts() {
             return $http({
                 method: 'GET',
-                url: 'api/tags'
+                url: 'api/tags/counts'
             });
         }
 
-        function GetMonthlyTop10(year, month) {
+        function GetMonthlyTop(year, month) {
             return $http({
                 method: 'GET',
-                url: 'api/tags/top10/' + year + '/' + month 
+                url: 'api/tags/top/' + year + '/' + month 
             });
         }
 
-        function GetYearlyTop10(year) {
+        function GetYearlyTop(year) {
             return $http({
                 method: 'GET',
-                url: 'api/tags/top10/' + year
+                url: 'api/tags/top/' + year
+            });
+        }
+
+        function GetMonthlyTags(year, month) {
+            return $http({
+                method: 'GET',
+                url: 'api/tags/' + year + '/' + month
+            });
+        }
+
+        function GetYearlyTags(year) {
+            return $http({
+                method: 'GET',
+                url: 'api/tags/' + year
             });
         }
     }

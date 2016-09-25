@@ -11,13 +11,10 @@
         var service = {
             GetTagsPerVideo               : GetTagsPerVideo,
             GetTagsPerVideoGraph          : GetTagsPerVideoGraph,
-            GetYearlyTagsPerVideo         : GetYearlyTagsPerVideo,
-            GetMonthlyTagsPerVideo        : GetMonthlyTagsPerVideo,
-            GetMonthlyTaglessVideos       : GetMonthlyTaglessVideos,
-            GetYearlyTaglessVideos        : GetYearlyTaglessVideos,
-            GetTaglessVideoPercentage     : GetTaglessVideoPercentage,
             GetMonthlyQuartilePercentages : GetMonthlyQuartilePercentages,
-            GetYearlyQuartilePercentages  : GetYearlyQuartilePercentages
+            GetYearlyQuartilePercentages  : GetYearlyQuartilePercentages,
+            GetTagLengthStats             : GetTagLengthStats,
+            GetTagLengthGraph             : GetTagLengthGraph
         };
         return service;
 
@@ -36,52 +33,31 @@
             });
         }
 
-        function GetYearlyTagsPerVideo(year) {
-            return $http({
-                method : 'GET',
-                url    : 'api/statistics/histograms/tags_per_video/yearly/' + year
-            });
-        }
-
-        function GetMonthlyTagsPerVideo(year, month) {
-            return $http({
-                method : 'GET',
-                url    : 'api/statistics/histograms/tags_per_video/monthly/' + year + '/' + month
-            });
-        }
-
-        function GetMonthlyTaglessVideos(year) {
-            return $http({
-                method : 'GET',
-                url    : 'api/statistics/graphs/tagless/' + year
-            });
-        }
-
-        function GetYearlyTaglessVideos() {
-            return $http({
-                method : 'GET',
-                url    : 'api/statistics/graphs/tagless'
-            });
-        }
-
-        function GetTaglessVideoPercentage() {
-            return $http({
-                method : 'GET',
-                url    : 'api/statistics/tagless'
-            });
-        }
-
         function GetMonthlyQuartilePercentages(year) {
             return $http({
                 method : 'GET',
-                url    : 'api/statistics/graphs/below_first_quartile/' + year
+                url    : 'api/statistics/graphs/vids_below_first_quartile/' + year
             });
         }
 
         function GetYearlyQuartilePercentages() {
             return $http({
                 method : 'GET',
-                url    : 'api/statistics/graphs/below_first_quartile'
+                url    : 'api/statistics/graphs/vids_below_first_quartile'
+            });
+        }
+
+        function GetTagLengthStats() {
+            return $http({
+                method : 'GET',
+                url    : 'api/statistics/tag_length'
+            });
+        }
+
+        function GetTagLengthGraph() {
+            return $http({
+                method : 'GET',
+                url    : 'api/statistics/graphs/tag_length'
             });
         }
     }

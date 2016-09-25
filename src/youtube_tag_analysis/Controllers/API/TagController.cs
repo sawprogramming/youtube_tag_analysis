@@ -12,21 +12,33 @@ namespace youtube_tag_analysis.Controllers.API
         private TagService service_ = new TagService();
 
         [HttpGet]
-        [Route("api/tags")]
-        public HttpResponseMessage GetAllTags(){
-            return Request.CreateResponse(HttpStatusCode.OK, service_.GetAllTags());
+        [Route("api/tags/counts")]
+        public HttpResponseMessage GetTagCounts(){
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetTagCounts());
         }
 
         [HttpGet]
-        [Route("api/tags/top10/{year}")]
-        public HttpResponseMessage GetTop10Yearly(int year) {
-            return Request.CreateResponse(HttpStatusCode.OK, service_.GetTop10(year));
+        [Route("api/tags/top/{year}")]
+        public HttpResponseMessage GetTopYearly(int year) {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetTop(year));
         }
 
         [HttpGet]
-        [Route("api/tags/top10/{year}/{month}")]
-        public HttpResponseMessage GetTop10Monthly(int year, int month) {
-            return Request.CreateResponse(HttpStatusCode.OK, service_.GetTop10(month, year));
+        [Route("api/tags/top/{year}/{month}")]
+        public HttpResponseMessage GetTopMonthly(int year, int month) {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetTop(year, month));
+        }
+
+        [HttpGet]
+        [Route("api/tags/{year}/{month}")]
+        public HttpResponseMessage GetMonthlyTags(int year, int month) {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetMonthlyTags(year, month));
+        }
+
+        [HttpGet]
+        [Route("api/tags/{year}")]
+        public HttpResponseMessage GetYearlyTags(int year) {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetYearlyTags(year));
         }
     }
 }
