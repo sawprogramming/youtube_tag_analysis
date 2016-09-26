@@ -1,0 +1,50 @@
+﻿@{ Layout = null; }
+<div class="body-content" ng-controller="OverlapCtrl as vm">
+    <div class="page-header">
+        <h3>Video Overlap Percentages</h3>
+    </div>
+    <div class="row">
+        <div class="panel panel-garnet">
+            <div class="panel-heading clearfix">
+                <div class="row row-eq-height">
+                    <div class="col-md-8">
+                        <p class="form-control-static">Basic Video Overlap Data</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback" style="padding: 0; margin: 0">
+                            <input type="text" ng-model="basic_overlap_search" class="form-control" placeholder="Search" />
+                            <span class="glyphicon glyphicon-search form-control-feedback" style="color: black"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Video</th>
+                        <th>Tags &#x2229; Title</th>
+                        <th>Tags &#x2229; Description</th>
+                        <th>Tags &#x2229; (Title &#x222a; Description)</th>
+                        <th>Title as Tags</th>
+                        <th>Description as Tags</th>
+                        <th>(Title &#x222a; Description) as Tags</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="video in vm.VideoOverlap | filter: basic_overlap_search | itemsPerPage: 15" pagination-id="basic_overlap">
+                        <td ng-bind="video.ID"></td>
+                        <td><span ng-bind="video.TagTitle            | nullablePercentage"></span></td>
+                        <td><span ng-bind="video.TagDescription      | nullablePercentage"></span></td>
+                        <td><span ng-bind="video.TagTitleDescription | nullablePercentage"></span></td>
+                        <td><span ng-bind="video.TitleTag            | nullablePercentage"></span></td>
+                        <td><span ng-bind="video.DescriptionTag      | nullablePercentage"></span></td>
+                        <td><span ng-bind="video.TitleDescriptionTag | nullablePercentage"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-footer clearfix">
+                <dir-pagination-controls pagination-id="basic_overlap"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
