@@ -12,5 +12,15 @@ namespace youtube_tag_analysis.Controllers.View
         public ActionResult Index() {
             return View();
         }
+
+        [Route("views/Tags/Top")]
+        public ActionResult Top() {
+            return View();
+        }
+
+        [Route("views/Tags/Length")]
+        public ActionResult Length() {
+            return View();
+        }
 	}
 }

@@ -1,0 +1,127 @@
+﻿@{ Layout = null; }
+<div class="body-content">
+    <div class="page-header">
+        <h3>Tag Overlap Histograms</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly Tags &#x2229; Title Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTagTitle_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTagTitle_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_tagtitle_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly Tags &#x2229; Description Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTagDescr_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTagDescr_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_tagdescr_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly Tags &#x2229; (Title &#x222a; Description) Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTagTitleDescr_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTagTitleDescr_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_tagtitledescr_histogram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Yearly Tags &#x2229; Title Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTagTitle_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="yearly_tagtitle_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Yearly Tags &#x2229; Description Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTagDescr_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="yearly_tagdescr_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Yearly Tags &#x2229; (Title &#x222a; Description) Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTagTitleDescr_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="yearly_tagtitledescr_histogram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

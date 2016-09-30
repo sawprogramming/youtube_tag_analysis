@@ -767,10 +767,12 @@
     <Content Include="App_Data\Small dataset\documents\_ntIzftXKMM.txt" />
     <Content Include="App_Data\Small dataset\documents\_Utp93A0yD4.txt" />
     <Content Include="Content\angular-toastr.min.css" />
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-messages.js" />
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular-toastr.tpls.min.js" />
@@ -782,15 +784,24 @@
     <Content Include="Scripts\app\common\directives\monthSelect.js" />
     <Content Include="Scripts\app\common\filters\nullablePercentage.js" />
     <Content Include="Scripts\app\common\directives\yearSelect.js" />
-    <Content Include="Scripts\app\overlap\overlap.controller.js" />
+    <Content Include="Scripts\app\overlap\overlapFull.controller.js" />
+    <Content Include="Scripts\app\overlap\overlapFullTag.controller.js" />
+    <Content Include="Scripts\app\overlap\overlapFullOther.controller.js" />
+    <Content Include="Scripts\app\overlap\overlapSmall.controller.js" />
+    <Content Include="Scripts\app\overlap\overlapSmallOther.controller.js" />
+    <Content Include="Scripts\app\overlap\overlapSmallTag.controller.js" />
     <Content Include="Scripts\app\services\overlap.service.js" />
     <Content Include="Scripts\app\services\tag.service.js" />
     <Content Include="Scripts\app\services\video.service.js" />
     <Content Include="Scripts\app\tag\tag.controller.js" />
+    <Content Include="Scripts\app\tag\tagLength.controller.js" />
+    <Content Include="Scripts\app\tag\tagTop.controller.js" />
+    <Content Include="Scripts\app\video\videoQuartile.controller.js" />
     <Content Include="Scripts\app\video\videoStats.controller.js" />
     <Content Include="Scripts\app\home\home.controller.js" />
     <Content Include="Scripts\app\services\general.service.js" />
     <Content Include="Scripts\app\services\statistics.service.js" />
+    <Content Include="Scripts\app\video\videoTagless.controller.js" />
     <Content Include="Scripts\dirPagination.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\ng-file-upload.min.js" />
@@ -800,7 +811,7 @@
     <Content Include="App_Data\Large dataset\largedataset.csv" />
     <Content Include="App_Data\Small dataset\PublicationDates.csv" />
     <Content Include="App_Data\tagsPerVideo.csv" />
-    <Content Include="Views\Video\index.cshtml" />
+    <Content Include="Views\Video\tags.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
@@ -816,7 +827,16 @@
     </Content>
     <Content Include="Views\index.cshtml" />
     <Content Include="Views\Tag\index.cshtml" />
-    <Content Include="Views\Overlap\index.cshtml" />
+    <Content Include="Views\Overlap\full.cshtml" />
+    <Content Include="Views\Video\tagless.cshtml" />
+    <Content Include="Views\Video\quartile.cshtml" />
+    <Content Include="Views\Tag\top.cshtml" />
+    <Content Include="Views\Tag\length.cshtml" />
+    <Content Include="Views\Overlap\full_tag.cshtml" />
+    <Content Include="Views\Overlap\full_other.cshtml" />
+    <Content Include="Views\Overlap\small_tag.cshtml" />
+    <Content Include="Views\Overlap\small_other.cshtml" />
+    <Content Include="Views\Overlap\small.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

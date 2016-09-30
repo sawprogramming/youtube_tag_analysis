@@ -3,22 +3,22 @@
 
     angular
         .module('YTT')
-        .controller('VideoStatsCtrl', VideoStatsController);
+        .controller('TagLengthCtrl', TagLengthController);
 
-    VideoStatsController.$inject = ['$scope', 'StatisticsSvc', 'VideoSvc'];
+    TagLengthController.$inject = ['$scope', 'StatisticsSvc', 'TagSvc'];
 
-    function VideoStatsController($scope, StatisticsSvc, VideoSvc) {
+    function TagLengthController($scope, StatisticsSvc, TagSvc) {
         var vm = this;
-        var AreaChartData, YearlyTagsPerVideoHistogram, MonthlyTagsPerVideoHistogram;
+        var AreaChartData, MonthlyTagLengthHistogram, YearlyTagLengthHistogram;
         var HistogramOptions = {
-            legend: {
+            legend : {
                 position: 'none'
             },
-            theme: 'maximized'
+            theme  : 'maximized'
         };
 
         // model
-        vm.MonthlyTagsPerVideo_Month = 12;
+        vm.MonthlyTagLength_Month = 12;
 
         initialize();
 
@@ -28,17 +28,17 @@
         }
 
         function FetchAreaChartData() {
-            StatisticsSvc.GetTagsPerVideo().then(
+            StatisticsSvc.GetTagLengthStats().then(
                 function success(statistics) {
-                    vm.TagsPerVideoStats = statistics.data;
+                    vm.TagLengthStats = statistics.data;
 
-                    StatisticsSvc.GetTagsPerVideoGraph().then(
+                    StatisticsSvc.GetTagLengthGraph().then(
                         function success(response) {
                             AreaChartData = new google.visualization.DataTable();
                             var chartData = new Array([]);
 
                             // create the chart data
-                            AreaChartData.addColumn('number', 'Number of Tags');
+                            AreaChartData.addColumn('number', 'Tag Length');
                             AreaChartData.addColumn('number', 'Frequency');
                             AreaChartData.addColumn({ type: 'string', role: 'annotation' });
                             for (var i = 0; i < response.data.length; ++i) {
@@ -61,19 +61,19 @@
         }
 
         function FetchYearlyHistogramData(year) {
-            VideoSvc.GetYearlyTagsPerVideo(year).then(
+            TagSvc.GetYearlyTags(year).then(
                 function success(response) {
                     // setup the chart
-                    YearlyTagsPerVideoHistogram = new google.visualization.DataTable();
-                    YearlyTagsPerVideoHistogram.addColumn('string', 'Video ID');
-                    YearlyTagsPerVideoHistogram.addColumn('number', 'Number of Tags');
+                    YearlyTagLengthHistogram = new google.visualization.DataTable();
+                    YearlyTagLengthHistogram.addColumn('string', 'Tag');
+                    YearlyTagLengthHistogram.addColumn('number', 'Length');
 
                     // fill the chart with the data
-                    angular.forEach(response.data, function(value, key) {
-                            var rowData = new Array(2);
-                            rowData[0]  = value.ID;
-                            rowData[1]  = value.NumTags;
-                            YearlyTagsPerVideoHistogram.addRow(rowData);
+                    angular.forEach(response.data, function (value, key) {
+                        var rowData = new Array(2);
+                        rowData[0]  = value;
+                        rowData[1]  = value.length;
+                        YearlyTagLengthHistogram.addRow(rowData);
                     });
 
                     // draw the chart
@@ -83,19 +83,19 @@
         }
 
         function FetchMonthlyHistogramData(year, month) {
-            VideoSvc.GetMonthlyTagsPerVideo(year, month).then(
+            TagSvc.GetMonthlyTags(year, month).then(
                 function success(response) {
                     // setup the chart
-                    MonthlyTagsPerVideoHistogram = new google.visualization.DataTable();
-                    MonthlyTagsPerVideoHistogram.addColumn('string', 'Video ID');
-                    MonthlyTagsPerVideoHistogram.addColumn('number', 'Number of Tags');
+                    MonthlyTagLengthHistogram = new google.visualization.DataTable();
+                    MonthlyTagLengthHistogram.addColumn('string', 'Tag');
+                    MonthlyTagLengthHistogram.addColumn('number', 'Length');
 
                     // fill the chart with the data
                     angular.forEach(response.data, function (value, key) {
                         var rowData = new Array(2);
-                        rowData[0]  = value.ID;
-                        rowData[1]  = value.NumTags;
-                        MonthlyTagsPerVideoHistogram.addRow(rowData);
+                        rowData[0]  = value;
+                        rowData[1]  = value.length;
+                        MonthlyTagLengthHistogram.addRow(rowData);
                     });
 
                     // draw the chart
@@ -117,34 +117,34 @@
             };
 
             // draw the chart
-            var chart = new google.visualization.AreaChart(document.getElementById('tags_per_video_graph'));
+            var chart = new google.visualization.AreaChart(document.getElementById('tag_length_graph'));
             chart.draw(AreaChartData, options);
         }
 
         function DrawYearlyHistogram() {
-            var chart = new google.visualization.Histogram(document.getElementById('yearly_tags_per_video_histogram'));
-            chart.draw(YearlyTagsPerVideoHistogram, HistogramOptions);
+            var chart = new google.visualization.Histogram(document.getElementById('yearly_tag_length_histogram'));
+            chart.draw(YearlyTagLengthHistogram, HistogramOptions);
         }
 
         function DrawMonthlyHistogram() {
-            var chart = new google.visualization.Histogram(document.getElementById('monthly_tags_per_video_histogram'));
-            chart.draw(MonthlyTagsPerVideoHistogram, HistogramOptions);
+            var chart = new google.visualization.Histogram(document.getElementById('monthly_tag_length_histogram'));
+            chart.draw(MonthlyTagLengthHistogram, HistogramOptions);
         }
 
         // ng-change isn't working so we're dealing with it this way
-        $scope.$watch("vm.YearlyTagsPerVideo_Year", function dosomething(current, previous) {
+        $scope.$watch("vm.MonthlyTagLength_Month", function dosomething(current, previous) {
+            if (current != previous) {
+                FetchMonthlyHistogramData(vm.MonthlyTagLength_Year, current);
+            }
+        });
+        $scope.$watch("vm.MonthlyTagLength_Year", function dosomething(current, previous) {
+            if (current != previous) {
+                FetchMonthlyHistogramData(current, vm.MonthlyTagLength_Month);
+            }
+        });
+        $scope.$watch("vm.YearlyTagLength_Year", function dosomething(current, previous) {
             if (current != previous) {
                 FetchYearlyHistogramData(current);
-            }
-        });
-        $scope.$watch("vm.MonthlyTagsPerVideo_Month", function dosomething(current, previous) {
-            if (current != previous) {
-                FetchMonthlyHistogramData(vm.MonthlyTagsPerVideo_Year, current);
-            }
-        });
-        $scope.$watch("vm.MonthlyTagsPerVideo_Year", function dosomething(current, previous) {
-            if (current != previous) {
-                FetchMonthlyHistogramData(current, vm.MonthlyTagsPerVideo_Month);
             }
         });
     }

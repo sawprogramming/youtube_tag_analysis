@@ -8,6 +8,7 @@
             'ngMessages',
             'toastr',
             'ngFileUpload',
-            'ngRoute'
+            'ngRoute',
+            'ngAnimate'
         ]);
 })();

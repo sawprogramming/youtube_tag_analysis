@@ -3,11 +3,11 @@
 
     angular
         .module('YTT')
-        .controller('OverlapCtrl', OverlapController);
+        .controller('OverlapFullCtrl', OverlapFullController);
 
-    OverlapController.$inject = ['OverlapSvc', '$scope']
+    OverlapFullController.$inject = ['$scope', 'OverlapSvc']
 
-    function OverlapController(OverlapSvc, $scope) {
+    function OverlapFullController($scope, OverlapSvc) {
         var vm = this;
 
         // model

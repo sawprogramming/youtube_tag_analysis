@@ -12,6 +12,25 @@ namespace youtube_tag_analysis.Services
             return GetVideoOverlap(ImportService.Videos.Values);
         }
 
+        public List<BasicOverlapModel> GetVideoOverlap(int year) {
+            return GetVideoOverlap(ImportService.Videos.Values.Where(
+                    video =>
+                        video.Year == year
+                )
+                .ToList()
+            );
+        }
+
+        public List<BasicOverlapModel> GetVideoOverlap(int year, int month) {
+            return GetVideoOverlap(ImportService.Videos.Values.Where(
+                    video =>
+                        video.Year  == year
+                     && video.Month == month
+                )
+                .ToList()
+            );
+        }
+
         public List<BasicOverlapModel> GetVideoOverlap(ICollection<VideoModel> videos) {
             List<BasicOverlapModel> list = new List<BasicOverlapModel>();
 

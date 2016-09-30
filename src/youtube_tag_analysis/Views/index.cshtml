@@ -26,15 +26,39 @@
                 Navigation
             </div>
             <ul class="list-group">
+                <li class="list-group-item list-group-item-info">Stuff</li> 
                 <a href="/" class="list-group-item">Home</a>
-                <a href="/videos" class="list-group-item">Video Statistics</a>
-                <a href="/tags" class="list-group-item">Tag Statistics</a>
-                <a href="/overlap" class="list-group-item">Overlap</a>
+
+                <li class="list-group-item list-group-item-info">
+                    <span class="glyphicon glyphicon-facetime-video"></span> Video Statistics
+                </li>
+                <a href="/videos/tags"     class="list-group-item">Tags Per Video</a>
+                <a href="/videos/tagless"  class="list-group-item">Tagless Videos</a>
+                <a href="/videos/quartile" class="list-group-item">Below First Quartile</a>
+
+                <li class="list-group-item list-group-item-info">
+                    <span class="glyphicon glyphicon-list"></span> Tag Statistics
+                </li>
+                <a href="/tags"        class="list-group-item">Tag Dump</a>
+                <a href="/tags/top"    class="list-group-item">Top Tags</a>
+                <a href="/tags/length" class="list-group-item">Tag Length</a>
+
+                <li class="list-group-item list-group-item-info">
+                    <span class="glyphicon glyphicon-stats"></span> Overlap Statistics
+                </li>
+                <a href="/overlap/full"        class="list-group-item">Video Dump (Full)</a>
+                <a href="/overlap/full/tag"    class="list-group-item">Tag Overlap (Full)</a>
+                <a href="/overlap/full/other"  class="list-group-item">Other Overlap (Full)</a>
+                <a href="/overlap/small"       class="list-group-item">Video Dump (Small)</a>
+                <a href="/overlap/small/tag"   class="list-group-item">Tag Overlap (Small)</a>
+                <a href="/overlap/small/other" class="list-group-item">Other Overlap (Small)</a>
             </ul>
         </div>
     </div>
     <div class="col-md-8">
-        <div ng-view></div>
+        <div class="view-animate-container">
+            <div ng-view class="view-animate"></div>
+        </div>
     </div>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">

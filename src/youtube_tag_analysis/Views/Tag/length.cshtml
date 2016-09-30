@@ -1,0 +1,91 @@
+﻿@{ Layout = null; }
+<div class="body-content">
+    <div class="page-header">
+        <h3>Tag Length Statistics</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Tag Length Statistics
+                </div>
+                <div class="panel-body">
+                    <div id="tag_length_graph"></div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Statistic</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Average</b></td>
+                            <td ng-bind="vm.TagLengthStats.Average"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Median</b></td>
+                            <td ng-bind="vm.TagLengthStats.Median"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Mode</b></td>
+                            <td ng-bind="vm.TagLengthStats.Mode"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Standard Deviation</b></td>
+                            <td ng-bind="vm.TagLengthStats.Standard_Deviation | number: 2"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Variance</b></td>
+                            <td ng-bind="vm.TagLengthStats.Variance | number: 2"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Quartiles</b></td>
+                            <td ng-bind="vm.TagLengthStats.Quartiles"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly Tag Length Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTagLength_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTagLength_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_tag_length_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Yearly Tag Length Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTagLength_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="yearly_tag_length_histogram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

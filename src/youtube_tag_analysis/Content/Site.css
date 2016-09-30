@@ -68,3 +68,55 @@ input[type="checkbox"].input-validation-error {
     background-color: #782F40;
     border-color: #782F40;
 }
+
+
+.view-animate-container {
+    position   : relative;
+    height     : 1000px;
+    overflow-x : hidden;
+}
+
+.view-animate {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.view-animate.ng-enter {
+  -webkit-animation-name: zoomInLeft;
+  animation-name: zoomInLeft;
+
+  display:block;
+  width:100%;
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.view-animate.ng-leave {
+    -webkit-animation-name: zoomOutDown;
+    animation-name: zoomOutDown;
+
+    display:block;
+    width:100%;
+
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.view-animate.ng-enter {
+  left:100%;
+}
+.view-animate.ng-enter.ng-enter-active {
+  left:0;
+}
+.view-animate.ng-leave.ng-leave-active {
+  left:-100%;
+}

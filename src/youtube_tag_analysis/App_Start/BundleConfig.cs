@@ -19,6 +19,7 @@ namespace youtube_tag_analysis
                 "~/Scripts/angular.min.js",
                 "~/Scripts/angular-route.min.js",
                 "~/Scripts/angular-messages.js",
+                "~/Scripts/angular-animate.min.js",
                 "~/Scripts/xregexp-min.js",
                 "~/Scripts/unicode-base.js",
                 "~/Scripts/dirPagination.js",
@@ -30,6 +31,7 @@ namespace youtube_tag_analysis
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.min.css",
                  "~/Content/angular-toastr.min.css",
+                 "~/Content/animate.min.css",
                  "~/Content/Site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(

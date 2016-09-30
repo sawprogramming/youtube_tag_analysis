@@ -15,9 +15,19 @@
                 controller   : 'HomeCtrl',
                 controllerAs : 'vm'
             })
-            .when('/videos', {
-                templateUrl  : 'views/Video/Index',
+            .when('/videos/tags', {
+                templateUrl  : 'views/Video/Tags',
                 controller   : 'VideoStatsCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/videos/tagless', {
+                templateUrl  : 'views/Video/Tagless',
+                controller   : 'VideoTaglessCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/videos/quartile', {
+                templateUrl  : 'views/Video/Quartile',
+                controller   : 'VideoQuartileCtrl',
                 controllerAs : 'vm'
             })
             .when('/tags', {
@@ -25,9 +35,44 @@
                 controller   : 'TagCtrl',
                 controllerAs : 'vm'
             })
-            .when('/overlap', {
-                templateUrl  : 'views/Overlap/Index',
-                controller   : 'OverlapCtrl',
+            .when('/tags/top', {
+                templateUrl  : 'views/Tags/Top',
+                controller   : 'TagTopCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/tags/length', {
+                templateUrl  : 'views/Tags/Length',
+                controller   : 'TagLengthCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/overlap/full', {
+                templateUrl  : 'views/Overlap/Full',
+                controller   : 'OverlapFullCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/overlap/full/tag', {
+                templateUrl  : 'views/Overlap/Full/Tag',
+                controller   : 'OverlapFullTagCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/overlap/full/other', {
+                templateUrl  : 'views/Overlap/Full/Other',
+                controller   : 'OverlapFullOtherCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/overlap/small', {
+                templateUrl  : 'views/Overlap/Small',
+                controller   : 'OverlapSmallCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/overlap/small/tag', {
+                templateUrl  : 'views/Overlap/Small/Tag',
+                controller   : 'OverlapSmallTagCtrl',
+                controllerAs : 'vm'
+            })
+            .when('/overlap/small/other', {
+                templateUrl  : 'views/Overlap/Small/Other',
+                controller   : 'OverlapSmallOtherCtrl',
                 controllerAs : 'vm'
             })
             .otherwise({

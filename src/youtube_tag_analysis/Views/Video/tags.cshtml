@@ -1,5 +1,5 @@
 ﻿@{ Layout = null; }
-<div class="body-content" ng-controller="VideoStatsCtrl as vm">
+<div class="body-content">
     <div class="row">
         <div class="page-header">
             <h3>Tags Per Video Statistics</h3>
@@ -84,84 +84,6 @@
                         </div>
                     </div>
                     <div id="yearly_tags_per_video_histogram"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="page-header">
-        <h3>Tagless Video Statistics</h3>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-garnet">
-                <div class="panel-heading">
-                    Monthly Tagless Video Percentage Chart
-                </div>
-                <div class="panel-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Year:</label>
-                            <div class="col-md-10">
-                                <year-select class="form-control" ng-model="vm.MonthlyTaglessVideos_Year"></year-select>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="monthly_tagless_videos_chart"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-garnet">
-                <div class="panel-heading">
-                    Yearly Tagless Video Percentage Chart
-                </div>
-                <div class="panel-body">
-                    <div id="yearly_tagless_videos_chart"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-garnet">
-                <div class="panel-heading">
-                    Total Tagless Video Percentage
-                </div>
-                <div class="panel-body">
-                    <h1 class="text-center">
-                        <span ng-bind="vm.TaglessVideoPercentage | number: 2"></span>%
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="page-header">
-        <h3>Videos with Tags below First Quartile Statistics</h3>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-garnet">
-                <div class="panel-heading">
-                    Monthly Percentage Below First Quartile Chart
-                </div>
-                <div class="panel-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Year:</label>
-                            <div class="col-md-10">
-                                <year-select class="form-control" ng-model="vm.MonthlyQuartile_Year"></year-select>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="monthly_quartile_chart"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-garnet">
-                <div class="panel-heading">
-                    Yearly Percentage Below First Quartile Chart
-                </div>
-                <div class="panel-body">
-                    <div id="yearly_quartile_chart"></div>
                 </div>
             </div>
         </div>
