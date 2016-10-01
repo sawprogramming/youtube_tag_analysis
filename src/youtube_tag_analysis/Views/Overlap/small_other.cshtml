@@ -1,4 +1,88 @@
 ﻿@{ Layout = null; }
 <div class="body-content">
-
+    <div class="page-header">
+        <h3>Transcript as Tags Histograms</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly Transcript as Tags Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTransTag_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTransTag_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_transtag_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Monthly (Title &#x222a; Description &#x222a; Transcript) as Tags Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date:</label>
+                            <div class="col-md-6">
+                                <month-select class="form-control" ng-model="vm.MonthlyTitleDescrTransTag_Month"></month-select>
+                            </div>
+                            <div class="col-md-4">
+                                <year-select class="form-control" ng-model="vm.MonthlyTitleDescrTransTag_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="monthly_titledescrtranstag_histogram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Yearly Transcript as Tags Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTransTag_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="yearly_transtag_histogram"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-garnet">
+                <div class="panel-heading">
+                    Yearly (Title &#x222a; Description &#x222a; Transcript) as Tags Histogram
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Year:</label>
+                            <div class="col-md-10">
+                                <year-select class="form-control" ng-model="vm.YearlyTitleDescrTransTag_Year"></year-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="yearly_titledescrtranstag_histogram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

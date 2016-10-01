@@ -18,10 +18,15 @@
         };
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+
+        // model
+        vm.MonthlyTaglessVideos_Year = 2010;
+
         initialize();
 
         ///////////////////////////////////////////////////////////////////////////
         function initialize() {
+            FetchMonthlyTaglessVideoData(vm.MonthlyTaglessVideos_Year);
             FetchYearlyTaglessVideoData();
             FetchTaglessVideoPercentage();
         }

@@ -40,6 +40,26 @@ namespace youtube_tag_analysis.Services
             );
         }
 
+         public List<BasicOverlapModel> GetSmallVideoOverlap(int year) {
+            return GetVideoOverlap(ImportService.Videos.Values.Where(
+                    video =>
+                        !String.IsNullOrEmpty(video.Transcript)
+                     && video.Year == year
+                )
+                .ToList()
+            );
+        }
+
+        public List<BasicOverlapModel> GetSmallVideoOverlap(int year, int month) {
+            return GetVideoOverlap(ImportService.Videos.Values.Where(
+                    video =>
+                        !String.IsNullOrEmpty(video.Transcript)
+                     && video.Year == year
+                     && video.Month == month
+                )
+                .ToList()
+            );
+        }
         public List<BasicOverlapModel> GetVideoOverlap(ICollection<VideoModel> videos) {
             List<BasicOverlapModel> list = new List<BasicOverlapModel>();
 
