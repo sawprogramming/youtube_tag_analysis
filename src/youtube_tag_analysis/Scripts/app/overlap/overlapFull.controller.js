@@ -5,13 +5,14 @@
         .module('YTT')
         .controller('OverlapFullCtrl', OverlapFullController);
 
-    OverlapFullController.$inject = ['$scope', 'OverlapSvc']
+    OverlapFullController.$inject = ['$scope', '$uibModal', 'OverlapSvc']
 
-    function OverlapFullController($scope, OverlapSvc) {
+    function OverlapFullController($scope, $uibModal, OverlapSvc) {
         var vm = this;
 
         // model
         vm.VideoOverlap = [];
+        vm.ViewDetails  = ViewDetails;
 
         initialize();
 
@@ -22,6 +23,17 @@
                     vm.VideoOverlap = response.data;
                 }
             );
+        }
+
+        function ViewDetails(entity) {
+            $uibModal.open({
+                templateUrl  : 'scripts/app/video/video-modal.html',
+                controller   : 'VideoModalCtrl',
+                controllerAs : 'vm',
+                resolve      : {
+                    entity: function() { return entity; }
+                }
+            });
         }
     }
 })();

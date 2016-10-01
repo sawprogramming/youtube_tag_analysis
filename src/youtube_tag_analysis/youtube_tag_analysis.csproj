@@ -209,6 +209,7 @@
     <Compile Include="Models\StatisticsModel.cs" />
     <Compile Include="Models\TagCountModel.cs" />
     <Compile Include="Models\TagsPerVideoModel.cs" />
+    <Compile Include="Models\VideoDetailsModel.cs" />
     <Compile Include="Models\VideoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GeneralService.cs" />
@@ -784,6 +785,7 @@
     <Content Include="Scripts\app\common\directives\monthSelect.js" />
     <Content Include="Scripts\app\common\filters\nullablePercentage.js" />
     <Content Include="Scripts\app\common\directives\yearSelect.js" />
+    <Content Include="Scripts\app\common\filters\trustAsResourceUrl.js" />
     <Content Include="Scripts\app\overlap\overlapFull.controller.js" />
     <Content Include="Scripts\app\overlap\overlapFullTag.controller.js" />
     <Content Include="Scripts\app\overlap\overlapFullOther.controller.js" />
@@ -796,6 +798,8 @@
     <Content Include="Scripts\app\tag\tag.controller.js" />
     <Content Include="Scripts\app\tag\tagLength.controller.js" />
     <Content Include="Scripts\app\tag\tagTop.controller.js" />
+    <Content Include="Scripts\app\video\video-modal.controller.js" />
+    <Content Include="Scripts\app\video\video-modal.html" />
     <Content Include="Scripts\app\video\videoQuartile.controller.js" />
     <Content Include="Scripts\app\video\videoStats.controller.js" />
     <Content Include="Scripts\app\home\home.controller.js" />

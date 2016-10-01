@@ -13,6 +13,12 @@ namespace youtube_tag_analysis.Controllers.API
         private VideoService service_ = new VideoService();
 
         [HttpGet]
+        [Route("api/videos/video/{id}")]
+        public HttpResponseMessage GetVideo(string id) {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetVideo(id));
+        }
+
+        [HttpGet]
         [Route("api/videos/tags_per_video/{year}")]
         public HttpResponseMessage TagsPerVideoyearlyHistogram(int year) {
             return Request.CreateResponse(HttpStatusCode.OK, service_.YearlyTagsPerVideo(year));

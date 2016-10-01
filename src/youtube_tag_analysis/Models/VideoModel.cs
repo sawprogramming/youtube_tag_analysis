@@ -10,6 +10,7 @@ namespace youtube_tag_analysis.Models
         public string ID          { get; set; }
         public string Title       { get; set; }
         public string Description { get; set; }
+        public string Transcript  { get; set; }
         public int    Year        { get; set; }
         public int    Month       { get; set; }
     }

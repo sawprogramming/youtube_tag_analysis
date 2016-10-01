@@ -11,7 +11,8 @@
         var service = {
             GetVideoOverlap   : GetVideoOverlap,
             GetMonthlyOverlap : GetMonthlyOverlap,
-            GetYearlyOverlap  : GetYearlyOverlap
+            GetYearlyOverlap  : GetYearlyOverlap,
+            GetSmallOverlap   : GetSmallOverlap
         };
         return service;
 
@@ -25,15 +26,22 @@
 
         function GetMonthlyOverlap(year, month) {
             return $http({
-                method: 'GET',
-                url: 'api/overlap/videos/' + year + '/' + month
+                method : 'GET',
+                url    : 'api/overlap/videos/' + year + '/' + month
             });
         }
 
         function GetYearlyOverlap(year) {
             return $http({
-                method: 'GET',
-                url: 'api/overlap/videos/' + year
+                method : 'GET',
+                url    : 'api/overlap/videos/' + year
+            });
+        }
+
+        function GetSmallOverlap() {
+            return $http({
+                method : 'GET',
+                url    : 'api/overlap/videos/small'
             });
         }
     }

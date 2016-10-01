@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Xml;
 using youtube_tag_analysis.Classes;
 using youtube_tag_analysis.Models;
 
@@ -40,6 +41,7 @@ namespace youtube_tag_analysis.Services
             
             ImportVideos(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"App_Data\Large Dataset\largedataset.csv"));
             ImportTags(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"App_Data\tagsPerVideo.csv"));
+            ImportTranscripts(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"App_Data\Small dataset\documents"));
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,6 +87,19 @@ namespace youtube_tag_analysis.Services
                     // add the video to the graph
                     Graph.Insert(fields[0]);
                 }
+            }
+        }
+
+        private void ImportTranscripts(string path) {
+            string[] files = Directory.GetFiles(path);
+
+            foreach (var file in files) {
+                string text = File.ReadAllText(file);
+
+                // get transcript
+                string transcript = text.ExtractBetween("<TRANSCRIPT>", "</TRANSCRIPT>");
+
+                Videos[Path.GetFileNameWithoutExtension(file)].Transcript = transcript;
             }
         }
     }

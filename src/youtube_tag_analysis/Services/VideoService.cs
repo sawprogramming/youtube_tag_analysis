@@ -7,6 +7,20 @@ using youtube_tag_analysis.Models;
 namespace youtube_tag_analysis.Services
 {
     public class VideoService {
+        public VideoDetailsModel GetVideo(string id) {
+            VideoModel        video        = ImportService.Videos[id];
+
+            return new VideoDetailsModel() {
+                ID          = video.ID,
+                Description = video.Description,
+                Transcript  = video.Transcript,
+                Month       = video.Month,
+                Year        = video.Year,
+                Title       = video.Title,
+                Tags        = ImportService.Graph.GetEdges(video.ID)
+            };
+        }
+
         public List<TagsPerVideoModel> YearlyTagsPerVideo(int year) {
             List<TagsPerVideoModel> data = new List<TagsPerVideoModel>();
 

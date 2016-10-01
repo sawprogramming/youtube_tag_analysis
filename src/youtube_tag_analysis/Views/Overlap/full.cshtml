@@ -32,7 +32,7 @@
                 </thead>
                 <tbody>
                     <tr dir-paginate="video in vm.VideoOverlap | filter: basic_overlap_search | itemsPerPage: 15" pagination-id="basic_overlap">
-                        <td ng-bind="video.ID"></td>
+                        <td ng-bind="video.ID" ng-click="vm.ViewDetails(video)"></td>
                         <td><span ng-bind="video.TagTitle            | nullablePercentage"></span></td>
                         <td><span ng-bind="video.TagDescription      | nullablePercentage"></span></td>
                         <td><span ng-bind="video.TagTitleDescription | nullablePercentage"></span></td>

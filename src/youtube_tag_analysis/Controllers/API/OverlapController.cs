@@ -28,5 +28,11 @@ namespace youtube_tag_analysis.Controllers.API
         public HttpResponseMessage GetVideoOverlap(int year, int month) {
             return Request.CreateResponse(HttpStatusCode.OK, service_.GetVideoOverlap(year, month));
         }
+
+        [HttpGet]
+        [Route("api/overlap/videos/small")]
+        public HttpResponseMessage GetSmallVideoOverlap() {
+            return Request.CreateResponse(HttpStatusCode.OK, service_.GetSmallVideoOverlap());
+        }
     }
 }

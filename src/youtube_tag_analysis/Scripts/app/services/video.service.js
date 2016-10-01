@@ -9,6 +9,7 @@
 
     function VideoService($http) {
         var service = {
+            GetVideoDetails               : GetVideoDetails,
             GetYearlyTagsPerVideo         : GetYearlyTagsPerVideo,
             GetMonthlyTagsPerVideo        : GetMonthlyTagsPerVideo,
             GetMonthlyTaglessVideos       : GetMonthlyTaglessVideos,
@@ -18,6 +19,13 @@
         return service;
 
         ///////////////////////////////////////////////////////////////////////////
+        function GetVideoDetails(id) {
+            return $http({
+                method : 'GET',
+                url    : 'api/videos/video/' + id
+            });
+        }
+
         function GetYearlyTagsPerVideo(year) {
             return $http({
                 method : 'GET',

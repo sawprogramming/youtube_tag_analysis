@@ -1,0 +1,35 @@
+﻿<div class="modal-header bg-primary">
+    <button type="button" class="close" aria-label="Close" ng-click="vm.cancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title" ng-bind="vm.Title"></h4>
+</div>
+<div class="modal-body">
+    <div class="row text-center">
+        <iframe width="560" height="315" ng-src="{{ 'https://www.youtube.com/embed/' +  vm.ID  | trustAsResourceUrl }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="row" ng-if="vm.Description">
+        <div class="col-md-12">
+            <b>Description:</b>
+            <div class="well">
+                {{ vm.Description }}
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.Tags">
+        <div class="col-md-12">
+            <b>Tags:</b>
+            <div class="well">
+                {{ vm.Tags }}
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.Transcript">
+        <div class="col-md-12">
+            <b>Transcript:</b>
+            <div class="well">
+                {{ vm.Transcript }}
+            </div>
+        </div>
+    </div>
+</div>
